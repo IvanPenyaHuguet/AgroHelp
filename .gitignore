@@ -3,3 +3,7 @@ dist
 packages
 .webpack
 out
+src/@types
+node_modules/*
+.webpack
+assets
