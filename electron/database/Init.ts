@@ -20,13 +20,9 @@ let _getDatabase: DatabaseType | null = null // cached
 
 export class InitDatabase {
   database: DatabaseType | null
-  collection: any
 
   constructor(_getDatabase: DatabaseType | null) {
     this.database = this.cachedDB(_getDatabase)
-    this.addCollections(this.database).then(
-      (res: any): any => (this.collection = res)
-    )
   }
 
   cachedDB(_getDatabase: DatabaseType | null): DatabaseType | null {
@@ -52,20 +48,21 @@ export class InitDatabase {
       eventReduce: true, // <- eventReduce (optional, default: true)
     })
   }
-  async addCollections(_getDatabase: DatabaseType | null) {
+  async addCollections(_getDatabase: DatabaseType | null): Promise<void> {
     if (_getDatabase) {
-      return await _getDatabase.addCollections({
-        fields: {
-          schema: fieldSchema,
-          methods: fieldMethods,
-          statics: fieldCollectionMethods,
-        },
-        trees: {
-          schema: treeSchema,
-          methods: treeMethods,
-          statics: treeCollectionMethods,
-        },
-      })
+      console.log('DatabaseService: adding schemas..')
+      try {
+        await _getDatabase.addCollections({
+          fields: {
+            schema: fieldSchema,
+          },
+          trees: {
+            schema: treeSchema,
+          },
+        })
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
 }

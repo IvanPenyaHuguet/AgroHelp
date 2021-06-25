@@ -9,7 +9,7 @@ export const api = {
    * The function below can accessed using `window.Main.sayHello`
    */
 
-  sendMessage: (message: string) => { 
+  sendMessage: (message: string) => {
     ipcRenderer.send('message', message)
   },
 
@@ -18,7 +18,21 @@ export const api = {
    */
   on: (channel: string, callback: Function) => {
     ipcRenderer.on(channel, (_, data) => callback(data))
-  }
+  },
+  send: (channel: string, data: any) => {
+    // whitelist channels
+    let validChannels = ['message', 'db']
+    if (validChannels.includes(channel)) {
+      ipcRenderer.send(channel, data)
+    }
+  },
+  receive: (channel: string, func: Function) => {
+    let validChannels = ['fromMain']
+    if (validChannels.includes(channel)) {
+      // Deliberately strip event as it includes `sender`
+      ipcRenderer.on(channel, (event, ...args) => func(...args))
+    }
+  },
 }
 
 contextBridge.exposeInMainWorld('Main', api)

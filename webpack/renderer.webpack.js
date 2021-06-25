@@ -1,12 +1,11 @@
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
-  target: 'electron-renderer',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: require('./rules.webpack'),
   },
-  plugins: [new NodePolyfillPlugin()],
+  plugins: [new webpack.ExternalsPlugin('commonjs', ['leveldown'])],
 }

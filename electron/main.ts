@@ -1,5 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 
+import DB from './database/Init'
+
 let mainWindow: BrowserWindow | null
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
@@ -19,6 +21,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
+      enableRemoteModule: false,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   })
@@ -37,6 +40,9 @@ async function registerListeners() {
   ipcMain.on('message', (_, message) => {
     console.log(message)
   })
+  /* ipcMain.on('db', (_, data) => {
+    return DB
+  }) */
 }
 
 app

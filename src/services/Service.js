@@ -1,4 +1,5 @@
-import db from '../../electron/database/Init.ts'
+/* import db from '../../electron/database/Init.ts' */
+/* const db = window.Main.send('db') */
 
 export default class Service {
   constructor(collection) {

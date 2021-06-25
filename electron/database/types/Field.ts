@@ -12,9 +12,8 @@ export type FieldType = {
   createdAt: number
   updatedAt: number
   deleted: boolean
-  tree: 'string'
+  tree: string
   quantity: number
-  [k: string]: unknown
 }
 
 export type FieldMethods = {}
