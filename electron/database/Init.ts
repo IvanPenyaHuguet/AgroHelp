@@ -13,10 +13,8 @@ import {
 } from './schemas/TreeSchema'
 import { DatabaseType } from './types/DatabaseTypes'
 import { DatabaseCollections } from './collections/DatabaseCollections'
-import { RxDBReplicationGraphQLPlugin } from 'rxdb/plugins/replication-graphql'
 
 addRxPlugin(require('pouchdb-adapter-leveldb'))
-addRxPlugin(RxDBReplicationGraphQLPlugin)
 
 let _getDatabase: DatabaseType | null = null // cached
 

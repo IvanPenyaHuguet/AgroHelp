@@ -11,7 +11,6 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
   properties: {
     refCast: {
       type: 'string',
-      primary: true,
     },
     name: {
       type: 'string',
@@ -20,22 +19,13 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
       type: 'number',
       minimum: 0,
     },
-    type: {
-      type: 'array',
-      uniqueItems: true,
-      items: {
-        type: 'object',
-        properties: {
-          tree: {
-            ref: 'tree',
-            type: 'string',
-          },
-          quantity: {
-            type: 'number',
-            minimum: 0,
-          },
-        },
-      },
+    tree: {
+      ref: 'tree',
+      type: 'string',
+    },
+    quantity: {
+      type: 'number',
+      minimum: 0,
     },
     createdAt: {
       type: 'number',

@@ -12,11 +12,8 @@ export type FieldType = {
   createdAt: number
   updatedAt: number
   deleted: boolean
-  type: {
-    tree: 'string'
-    quantity: number
-    [k: string]: unknown
-  }[]
+  tree: 'string'
+  quantity: number
   [k: string]: unknown
 }
 
