@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import Table from '../components/Table'
-import Service from '../../../services/Service'
 
 import * as Database from '../../../services/database/Database'
 

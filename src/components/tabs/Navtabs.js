@@ -27,6 +27,7 @@ const useStyles = makeStyles({
     minHeight: '100vh',
     width: '100%',
     maxWidth: '100%',
+    overflow: 'hidden',
   },
   bar: {
     width: '100%',

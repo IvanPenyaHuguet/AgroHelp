@@ -1,4 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
+import installExtension, {
+  REACT_DEVELOPER_TOOLS,
+} from 'electron-devtools-installer'
 
 let mainWindow: BrowserWindow | null
 
@@ -35,6 +38,9 @@ async function registerListeners() {
   /**
    * This comes from bridge integration, check bridge.ts
    */
+  installExtension(REACT_DEVELOPER_TOOLS)
+    .then(name => console.log(`Added Extension:  ${name}`))
+    .catch(err => console.log('An error occurred: ', err))
   ipcMain.on('message', (_, message) => {
     console.log(message)
   })
