@@ -1,5 +1,5 @@
 import { useState, createContext } from 'react'
-import Alert from './Alert'
+import Alert from '../components/layouts/alert/Alert'
 
 export const AlertContext = createContext()
 

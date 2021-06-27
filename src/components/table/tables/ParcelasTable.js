@@ -91,7 +91,6 @@ export default function TableWithData() {
     setSelectionModel(selection.selectionModel)
   }
 
-  console.log(data)
   return (
     <Table
       columns={columns}

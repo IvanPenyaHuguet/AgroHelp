@@ -56,7 +56,7 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
       minimum: 0,
     },
   },
-  required: ['refCast', 'name', 'area', 'plantedArea', 'tree', 'quantity'],
+  required: ['refCast', 'name', 'area', 'plantedArea', 'tree'],
 }
 
 export const fieldMethods: FieldMethods = {}
