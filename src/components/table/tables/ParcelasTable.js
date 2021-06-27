@@ -77,6 +77,7 @@ const columns = [
 export default function TableWithData() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
+  const [selectionModel, setSelectionModel] = useState([])
 
   useEffect(async () => {
     setLoading(true)
@@ -85,6 +86,20 @@ export default function TableWithData() {
     setLoading(false)
     setData(objects)
   }, [])
+
+  const handleSelection = selection => {
+    setSelectionModel(selection.selectionModel)
+  }
+
   console.log(data)
-  return <Table columns={columns} rows={data} loading={loading} />
+  return (
+    <Table
+      columns={columns}
+      rows={data}
+      loading={loading}
+      checkboxSelection
+      selectionModel={selectionModel}
+      onSelectionModelChange={handleSelection}
+    />
+  )
 }

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
-import Router from './Router'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DayJs from '@date-io/dayjs'
+require('dayjs/locale/es')
 
+import Router from './Router'
 import { Provider } from 'rxdb-hooks'
 import ThemeProvider from './config/MUITheme'
 import { AlertContext } from './components/Exports'
@@ -19,11 +22,13 @@ export function App() {
 
   return (
     <Provider db={db}>
-      <ThemeProvider>
-        <AlertContext>
-          <Router />
-        </AlertContext>
-      </ThemeProvider>
+      <MuiPickersUtilsProvider utils={DayJs}>
+        <ThemeProvider>
+          <AlertContext>
+            <Router />
+          </AlertContext>
+        </ThemeProvider>
+      </MuiPickersUtilsProvider>
     </Provider>
   )
 }

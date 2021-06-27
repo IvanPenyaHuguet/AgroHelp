@@ -3,7 +3,7 @@ import TableContainer from './TableContainer'
 import CustomLoadingOverlay from './LoadingOverlay'
 import CustomNoRowsOverlay from './NoRowsOverlay'
 
-export default function Table({ columns, rows, loading }) {
+export default function Table({ columns, rows, loading, ...props }) {
   return (
     <TableContainer>
       <DataGrid
@@ -14,6 +14,7 @@ export default function Table({ columns, rows, loading }) {
         }}
         columns={columns}
         rows={rows}
+        loading={loading}
         rowsPerPageOptions={[10, 25, 50, 100]}
       />
     </TableContainer>
