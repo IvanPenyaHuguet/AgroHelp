@@ -4,6 +4,7 @@ import CustomLoadingOverlay from './LoadingOverlay'
 import CustomNoRowsOverlay from './NoRowsOverlay'
 
 export default function Table({ columns, rows, loading, ...props }) {
+  console.log(rows)
   return (
     <TableContainer>
       <DataGrid

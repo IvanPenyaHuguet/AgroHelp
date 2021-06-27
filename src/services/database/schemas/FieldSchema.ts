@@ -20,7 +20,7 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
       minimum: 0,
     },
     tree: {
-      ref: 'tree',
+      ref: 'trees',
       type: 'string',
     },
     quantity: {

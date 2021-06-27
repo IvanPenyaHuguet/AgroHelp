@@ -5,11 +5,13 @@ import { treeSchema } from './schemas/TreeSchema'
 
 import { RxDBValidatePlugin } from 'rxdb/plugins/validate'
 import { RxDBJsonDumpPlugin } from 'rxdb/plugins/json-dump'
+import { RxDBQueryBuilderPlugin } from 'rxdb/plugins/query-builder'
 import { RxDBUpdatePlugin } from 'rxdb/plugins/update'
 
 addRxPlugin(RxDBValidatePlugin)
 addRxPlugin(RxDBJsonDumpPlugin)
 addRxPlugin(RxDBUpdatePlugin)
+addRxPlugin(RxDBQueryBuilderPlugin)
 addRxPlugin(require('pouchdb-adapter-idb'))
 
 let _getDatabase: any // cached

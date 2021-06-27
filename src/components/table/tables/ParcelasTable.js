@@ -83,6 +83,11 @@ export default function TableWithData() {
     setLoading(true)
     const db = await Database.getDatabase()
     const objects = await db.fields.find().exec()
+    /* const objects2 = await objects.map(object => {
+      return { ...object, tree: object.populate('trees') }
+    })
+    console.log(objects2)
+    console.log(objects) */
     setLoading(false)
     setData(objects)
   }, [])

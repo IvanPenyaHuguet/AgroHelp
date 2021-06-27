@@ -1,7 +1,7 @@
 export default function validarReferenciaCatastral(referenciaCatastral) {
   //Valor por el que se debe multiplicar cada posición de cada subcadena
-  var pesoPosicion = [13, 15, 12, 5, 4, 17, 9, 21, 3, 7, 1]
-  var letraDc = 'MQWERTYUIOPASDFGHJKLBZX'
+  const pesoPosicion = [13, 15, 12, 5, 4, 17, 9, 21, 3, 7, 1]
+  const letraDc = 'MQWERTYUIOPASDFGHJKLBZX'
 
   //Sólo se comprueban las referencias catastrales con 20 carácteres alfanuméricos,
   //los dos últimos corresponden a los dígitos de control.
@@ -11,18 +11,18 @@ export default function validarReferenciaCatastral(referenciaCatastral) {
   referenciaCatastral = referenciaCatastral.toUpperCase()
 
   //Para calcular cada dígito de control se utilizan siguientes subcadenas
-  var cadenaPrimerDC = (
+  const cadenaPrimerDC = (
     referenciaCatastral.substring(0, 7) + referenciaCatastral.substring(14, 18)
   ).toUpperCase()
-  var cadenaSegundoDC = (
+  const cadenaSegundoDC = (
     referenciaCatastral.substring(7, 14) + referenciaCatastral.substring(14, 18)
   ).toUpperCase()
 
-  var cadenasDC = [cadenaPrimerDC, cadenaSegundoDC]
-  var dcCalculado = ''
+  const cadenasDC = [cadenaPrimerDC, cadenaSegundoDC]
+  let dcCalculado = ''
 
   cadenasDC.forEach(function (cadena) {
-    var sumaDigitos = 0
+    let sumaDigitos = 0
 
     /*
             Para el cálculo de cada dígito de control, se deben de sumar cada
@@ -31,7 +31,7 @@ export default function validarReferenciaCatastral(referenciaCatastral) {
             manera: A = 1, B = 2, ..., Z = 27.
         */
     cadena.split('').forEach(function (caracter, posicion) {
-      valorCaracter = caracter
+      let valorCaracter = caracter
 
       if (caracter >= 'A' && caracter <= 'N') {
         valorCaracter = caracter.charCodeAt() - 64

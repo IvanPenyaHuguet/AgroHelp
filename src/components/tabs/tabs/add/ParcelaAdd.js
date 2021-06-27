@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import dayjs from 'dayjs'
 import { useRxCollection, useRxData } from 'rxdb-hooks'
 
+import validateRefCat from '../../../../services/validators/ValidateRefCat'
 import { Paper, TextField, Button, Form, SelectInput } from '../../../Exports'
 import { AlertContext } from '../../../../context/AlertContext'
 import { makeStyles } from '@material-ui/core/styles'
@@ -19,7 +20,12 @@ const SignupSchema = Yup.object().shape({
     .min(2, 'Muy corto!')
     .max(50, 'Muy largo!')
     .required('Necesario'),
-  refCast: Yup.string().length(20, 'Son 20 caracteres').required('Necesario'),
+  refCast: Yup.string()
+    .length(20, 'Son 20 caracteres')
+    .test('validate-refcat', 'Las letras no son válidas', value => {
+      return validateRefCat(value)
+    })
+    .required('Necesario'),
   area: Yup.number('Debe de ser un numero')
     .positive('Debe de ser un numero positivo')
     .required('Necesario'),
@@ -65,7 +71,7 @@ export default function ParcelaAdd() {
         onSubmit={values => {
           collection
             .insert({ ...values, createdAt: dayjs().valueOf() })
-            .then(() => {
+            .then(res => {
               setAlert({
                 type: 'success',
                 message: 'Parcela añadida con éxito',
