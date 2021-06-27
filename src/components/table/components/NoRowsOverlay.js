@@ -75,7 +75,7 @@ export default function CustomNoRowsOverlay() {
           </g>
         </g>
       </svg>
-      <div className={classes.label}>No Rows</div>
+      <div className={classes.label}>Sin datos</div>
     </GridOverlay>
   )
 }

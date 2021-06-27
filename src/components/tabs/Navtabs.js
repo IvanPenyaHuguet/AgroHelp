@@ -52,8 +52,9 @@ export default function NavTabs() {
             aria-label="nav tabs example"
           >
             <Tab label="Parcelas" {...a11yProps(0)} />
-            <Tab label="Page Two" {...a11yProps(1)} />
-            <Tab label="Page Three" {...a11yProps(2)} />
+            <Tab label="Reactivos" {...a11yProps(1)} />
+            <Tab label="Histórico" {...a11yProps(2)} />
+            <Tab label="Añadir" {...a11yProps(3)} />
           </Tabs>
         </Toolbar>
       </AppBar>
@@ -65,6 +66,9 @@ export default function NavTabs() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Page Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Page F
       </TabPanel>
     </Container>
   )
