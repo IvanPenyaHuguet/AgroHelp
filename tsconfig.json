@@ -9,6 +9,9 @@
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "paths": {
+      "crypto": ["./node_modules/crypto-browserify"]
+    }
   }
 }

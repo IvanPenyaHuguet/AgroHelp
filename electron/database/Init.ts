@@ -1,24 +1,13 @@
 import { createRxDatabase, addRxPlugin } from 'rxdb'
-import leveldown from 'leveldown'
 
-import {
-  fieldSchema,
-  fieldMethods,
-  fieldCollectionMethods,
-} from './schemas/FieldSchema'
-import {
-  treeSchema,
-  treeMethods,
-  treeCollectionMethods,
-} from './schemas/TreeSchema'
-import { DatabaseType } from './types/DatabaseTypes'
-import { DatabaseCollections } from './collections/DatabaseCollections'
+import { fieldSchema } from './schemas/FieldSchema'
+import { treeSchema } from './schemas/TreeSchema'
 
-addRxPlugin(require('pouchdb-adapter-leveldb'))
+addRxPlugin(require('pouchdb-adapter-idb'))
 
-let _getDatabase: DatabaseType | null = null // cached
+let _getDatabase: any // cached
 
-export class InitDatabase {
+/* export class InitDatabase {
   database: DatabaseType | null
 
   constructor(_getDatabase: DatabaseType | null) {
@@ -65,6 +54,37 @@ export class InitDatabase {
       }
     }
   }
+} */
+/* const db = new InitDatabase(_getDatabase) */
+
+export function getDatabase() {
+  if (!_getDatabase) _getDatabase = createDatabase()
+  return _getDatabase
 }
-const db = new InitDatabase(_getDatabase)
-export default db
+
+async function createDatabase() {
+  console.log('DatabaseService: Creating database..')
+  const db = await createRxDatabase({
+    name: 'agrodb',
+    adapter: 'idb',
+    multiInstance: true, // <- multiInstance (optional, default: true) (leveldown false)
+    eventReduce: true, // <- eventReduce (optional, default: true)
+  })
+  console.log('DatabaseService: Database created')
+  console.log('DatabaseService: adding schemas..')
+  try {
+    await db.addCollections({
+      fields: {
+        schema: fieldSchema,
+      },
+      trees: {
+        schema: treeSchema,
+      },
+    })
+    console.log('DatabaseService: Schemas added')
+  } catch (err) {
+    console.error(err)
+    console.log('DatabaseService: Schemas failed')
+  }
+  return db
+}

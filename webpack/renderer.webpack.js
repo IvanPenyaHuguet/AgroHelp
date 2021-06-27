@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 module.exports = {
   resolve: {
@@ -7,5 +7,5 @@ module.exports = {
   module: {
     rules: require('./rules.webpack'),
   },
-  plugins: [new webpack.ExternalsPlugin('commonjs', ['leveldown'])],
+  plugins: [new NodePolyfillPlugin()],
 }

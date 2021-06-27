@@ -1,7 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 
-import DB from './database/Init'
-
 let mainWindow: BrowserWindow | null
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
@@ -40,13 +38,12 @@ async function registerListeners() {
   ipcMain.on('message', (_, message) => {
     console.log(message)
   })
-  /* ipcMain.on('db', (_, data) => {
-    return DB
-  }) */
 }
 
 app
-  .on('ready', createWindow)
+  .on('ready', function () {
+    createWindow()
+  })
   .whenReady()
   .then(registerListeners)
   .catch(e => console.error(e))
