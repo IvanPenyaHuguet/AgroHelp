@@ -99,7 +99,12 @@ export default function TreeAdd() {
         validationSchema={SignupSchema}
         onSubmit={async values => {
           await collection
-            .insert({ ...values, createdAt: dayjs().valueOf() })
+            .insert({
+              ...values,
+              createdAt: dayjs().valueOf(),
+              updatedAt: dayjs().valueOf(),
+              quantityUsed: 0,
+            })
             .catch(err => {
               console.error(err)
               setAlert({

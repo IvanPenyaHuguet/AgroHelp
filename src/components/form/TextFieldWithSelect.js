@@ -37,6 +37,7 @@ export default function TextFieldWithSelect({
       <TextField
         name={name}
         label={label}
+        type="number"
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

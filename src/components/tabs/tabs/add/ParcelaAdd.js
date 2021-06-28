@@ -70,7 +70,11 @@ export default function ParcelaAdd() {
         validationSchema={SignupSchema}
         onSubmit={values => {
           collection
-            .insert({ ...values, createdAt: dayjs().valueOf() })
+            .insert({
+              ...values,
+              createdAt: dayjs().valueOf(),
+              updatedAt: dayjs().valueOf(),
+            })
             .then(res => {
               setAlert({
                 type: 'success',

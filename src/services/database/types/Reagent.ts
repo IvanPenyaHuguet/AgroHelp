@@ -7,7 +7,7 @@ export type ReagentType = {
   unit: string
   price: number
   supplier: string
-  quantityRemaining: number
+  quantityUsed: number
   observations: string
   createdAt: number
   updatedAt: number

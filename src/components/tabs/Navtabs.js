@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 
 import Container from '../layouts/Container'
 import TabPanel from './Tabpanel'
-import { Parcelas, AddTabs } from '../Exports'
+import { Parcelas, AddTabs, Cultivos, Reagents } from '../Exports'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -66,13 +66,13 @@ export default function NavTabs() {
         <Parcelas />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Page Two
+        <Reagents />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Page Three
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Page Three
+        <Cultivos />
       </TabPanel>
       <TabPanel value={value} index={4} className={classes.zeroPadding}>
         <AddTabs />

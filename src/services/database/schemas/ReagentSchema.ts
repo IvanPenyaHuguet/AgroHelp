@@ -32,7 +32,7 @@ export const reagentSchema: RxJsonSchema<ReagentType> = {
     observations: {
       type: 'string',
     },
-    quantityRemaining: {
+    quantityUsed: {
       type: 'number',
       minimum: 0,
     },
