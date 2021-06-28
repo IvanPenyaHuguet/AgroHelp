@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
-import { DataGrid, GridToolbar } from '@material-ui/data-grid'
+import { useState, useEffect, useContext } from 'react'
+
 import TableContainer from '../components/TableContainer'
-import CustomLoadingOverlay from '../components/LoadingOverlay'
-import CustomNoRowsOverlay from '../components/NoRowsOverlay'
+import ManualTable from '../components/manual/ManualTable'
+import { AlertContext } from '../../../context/AlertContext'
+
 import * as dayjs from 'dayjs'
 
 import * as Database from '../../../services/database/Database'
@@ -73,7 +74,7 @@ const columns = [
     type: 'string',
     flex: 1,
   },
-  {
+  /* {
     field: 'createdAt',
     headerName: 'Creado',
     description: 'Cuando fue creado',
@@ -96,12 +97,14 @@ const columns = [
       return dayjs(params.value).format('DD/MM/YYYY H:mm')
     },
     valueParser: value => dayjs(value, 'DD/MM/YYYY H:mm', 'es').valueOf(),
-  },
+  }, */
 ]
 
 export default function TableWithData() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
+  const { setAlert } = useContext(AlertContext)
+  const [selected, setSelected] = useState([])
 
   useEffect(async () => {
     setLoading(true)
@@ -111,20 +114,38 @@ export default function TableWithData() {
     setData(objects)
   }, [])
 
+  const handleDeleteClick = () => {
+    Database.getDatabase()
+      .then(res => {
+        res.reagents
+          .find({ selector: { _id: { $in: selected.map(r => r._id) } } })
+          .remove()
+      })
+      .then(res => {
+        setAlert({
+          type: 'success',
+          message: 'Reactivos borrador con éxito',
+        })
+      })
+      .catch(err => {
+        console.error(err)
+        setAlert({
+          type: 'error',
+          message:
+            'Error no controlado, envia un email a ivanpenyahuguet@gmail.com',
+        })
+      })
+  }
+
   return (
     <TableContainer>
-      <DataGrid
-        components={{
-          Toolbar: GridToolbar,
-          LoadingOverlay: CustomLoadingOverlay,
-          NoRowsOverlay: CustomNoRowsOverlay,
-        }}
+      <ManualTable
         columns={columns}
         rows={data}
         loading={loading}
-        rowsPerPageOptions={[10, 25, 50, 100]}
-        disableMultipleSelection
-        getRowId={row => row._id}
+        handleDeleteClick={handleDeleteClick}
+        selected={selected}
+        setSelected={setSelected}
       />
     </TableContainer>
   )
