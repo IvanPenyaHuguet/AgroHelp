@@ -5,7 +5,13 @@ import Tab from '@material-ui/core/Tab'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
-import { TabPanel, Container, ParcelaAdd, TreeAdd } from '../../../Exports'
+import {
+  TabPanel,
+  Container,
+  ParcelaAdd,
+  TreeAdd,
+  ReagentAdd,
+} from '../../../Exports'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -58,6 +64,7 @@ export default function AddTabs() {
             <Tab label="Histórico" {...a11yProps(0)} />
             <Tab label="Parcelas" {...a11yProps(1)} />
             <Tab label="Cultivo" {...a11yProps(2)} />
+            <Tab label="Reactivos" {...a11yProps(3)} />
           </Tabs>
         </Toolbar>
       </AppBar>
@@ -69,6 +76,9 @@ export default function AddTabs() {
       </TabPanel>
       <TabPanel value={value} index={2} className={classes.screen}>
         <TreeAdd />
+      </TabPanel>
+      <TabPanel value={value} index={3} className={classes.screen}>
+        <ReagentAdd />
       </TabPanel>
     </Container>
   )

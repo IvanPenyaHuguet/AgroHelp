@@ -1,9 +1,12 @@
+import { useContext } from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import dayjs from 'dayjs'
 import { useRxCollection } from 'rxdb-hooks'
 
 import { Paper, TextField, Button, Form } from '../../../Exports'
+
+import { AlertContext } from '../../../../context/AlertContext'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -23,6 +26,8 @@ const SignupSchema = Yup.object().shape({
 export default function TreeAdd() {
   const classes = useStyles()
   const collection = useRxCollection('trees')
+  const { setAlert } = useContext(AlertContext)
+
   return (
     <Paper className={classes.root}>
       <Formik
@@ -32,13 +37,27 @@ export default function TreeAdd() {
         }}
         validationSchema={SignupSchema}
         onSubmit={async values => {
-          await collection.insert({ ...values, createdAt: dayjs().valueOf() })
+          await collection
+            .insert({ ...values, createdAt: dayjs().valueOf() })
+            .catch(err => {
+              console.error(err)
+              setAlert({
+                type: 'error',
+                message:
+                  'Error no controlado, envia un email a ivanpenyahuguet@gmail.com',
+              })
+            })
+          setAlert({
+            type: 'success',
+            message: 'Cultivo añadido con éxito',
+          })
         }}
       >
         {({ isSubmitting }) => (
           <Form>
-            <TextField name="name" label="Nombre" />
+            <TextField name="name" label="Nombre Com." />
             <TextField name="variety" label="Variedad" />
+
             <Button disabled={isSubmitting} type="submit">
               Nuevo
             </Button>

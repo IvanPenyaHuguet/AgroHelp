@@ -57,7 +57,8 @@ export default function NavTabs() {
             <Tab label="Parcelas" {...a11yProps(0)} />
             <Tab label="Reactivos" {...a11yProps(1)} />
             <Tab label="Histórico" {...a11yProps(2)} />
-            <Tab label="Añadir" {...a11yProps(3)} />
+            <Tab label="Cultivo" {...a11yProps(3)} />
+            <Tab label="Añadir" {...a11yProps(4)} />
           </Tabs>
         </Toolbar>
       </AppBar>
@@ -70,7 +71,10 @@ export default function NavTabs() {
       <TabPanel value={value} index={2}>
         Page Three
       </TabPanel>
-      <TabPanel value={value} index={3} className={classes.zeroPadding}>
+      <TabPanel value={value} index={3}>
+        Page Three
+      </TabPanel>
+      <TabPanel value={value} index={4} className={classes.zeroPadding}>
         <AddTabs />
       </TabPanel>
     </Container>

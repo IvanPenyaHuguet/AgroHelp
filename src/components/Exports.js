@@ -3,13 +3,17 @@ import Parcelas from './tabs/tabs/Parcelas'
 import AddTabs from './tabs/tabs/add/AddTabs'
 import ParcelaAdd from './tabs/tabs/add/ParcelaAdd'
 import TreeAdd from './tabs/tabs/add/TreeAdd'
+import ReagentAdd from './tabs/tabs/add/ReagentAdd'
 import TabPanel from './tabs/Tabpanel'
 import Container from './layouts/Container'
+import Popover from './layouts/pops/PopOver'
 import Paper from './layouts/Paper'
 import TextField from './form/TextField'
 import Button from './form/Button'
 import Form from './form/Form'
 import SelectInput from './form/SelectInput'
+import FieldArrayTreeOnReagent from './form/FieldArrayTreeOnReagent'
+import TextFieldWithSelect from './form/TextFieldWithSelect'
 
 export {
   AlertContext,
@@ -24,4 +28,8 @@ export {
   Button,
   Form,
   SelectInput,
+  ReagentAdd,
+  FieldArrayTreeOnReagent,
+  TextFieldWithSelect,
+  Popover,
 }

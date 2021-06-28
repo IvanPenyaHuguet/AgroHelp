@@ -2,6 +2,7 @@ import { createRxDatabase, addRxPlugin } from 'rxdb'
 
 import { fieldSchema } from './schemas/FieldSchema'
 import { treeSchema } from './schemas/TreeSchema'
+import { reagentSchema } from './schemas/ReagentSchema'
 
 import { RxDBValidatePlugin } from 'rxdb/plugins/validate'
 import { RxDBJsonDumpPlugin } from 'rxdb/plugins/json-dump'
@@ -38,6 +39,9 @@ async function createDatabase() {
       },
       trees: {
         schema: treeSchema,
+      },
+      reagents: {
+        schema: reagentSchema,
       },
     })
     console.log('DatabaseService: Schemas added')
