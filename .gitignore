@@ -9,3 +9,4 @@ assets
 agrodb-rxdb-0-_rxdb_internal
 .vscode
 pouch__all_dbs__
+.out

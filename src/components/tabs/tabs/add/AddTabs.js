@@ -11,6 +11,7 @@ import {
   ParcelaAdd,
   TreeAdd,
   ReagentAdd,
+  HistoricAdd,
 } from '../../../Exports'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -69,7 +70,7 @@ export default function AddTabs() {
         </Toolbar>
       </AppBar>
       <TabPanel value={value} index={0} className={classes.screen}>
-        Histórico
+        <HistoricAdd />
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.screen}>
         <ParcelaAdd />

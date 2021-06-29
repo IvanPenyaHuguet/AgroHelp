@@ -32,6 +32,10 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    require('electron').shell.openExternal(url)
+    return { action: 'deny' }
+  })
 }
 
 async function registerListeners() {

@@ -31,7 +31,7 @@ const SignupSchema = Yup.object().shape({
     .required('Necesario'),
   plantedArea: Yup.number('Debe de ser un numero')
     .positive('Debe de ser un numero positivo')
-    .lessThan(Yup.ref('area'), 'Debe ser menor al área')
+    .max(Yup.ref('area'), 'Debe ser menor al área')
     .required('Necesario'),
   quantity: Yup.number('Debe de ser un numero')
     .integer('Debe de ser un numero entero')
@@ -68,7 +68,7 @@ export default function ParcelaAdd() {
           tree: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={values => {
+        onSubmit={(values, actions) => {
           collection
             .insert({
               ...values,
@@ -80,6 +80,7 @@ export default function ParcelaAdd() {
                 type: 'success',
                 message: 'Parcela añadida con éxito',
               })
+              actions.resetForm()
             })
             .catch(err => {
               console.error(err)
@@ -104,7 +105,11 @@ export default function ParcelaAdd() {
               label="Cultivo"
               items={isFetching ? [] : result}
             />
-            <TextField name="quantity" label="Cantidad" type="number" />
+            <TextField
+              name="quantity"
+              label="Cantidad cultivado"
+              type="number"
+            />
             <TextField name="area" label="Área" type="number" />
             <TextField
               name="plantedArea"

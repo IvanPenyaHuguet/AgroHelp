@@ -43,12 +43,12 @@ export default function FieldArrayInputs({
                     />
                     <TextField
                       name={`${name}.${index}.minDose`}
-                      label="Dosis Min."
+                      label="Dosis Min. (%)"
                       type="number"
                     />
                     <TextField
                       name={`${name}.${index}.maxDose`}
-                      label="Dosis Max."
+                      label="Dosis Max. (%)"
                       type="number"
                     />
                     <TextField

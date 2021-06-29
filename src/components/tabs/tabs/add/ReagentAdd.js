@@ -3,6 +3,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import dayjs from 'dayjs'
 import { useRxCollection } from 'rxdb-hooks'
+import Typography from '@material-ui/core/Typography'
 
 import {
   Paper,
@@ -76,6 +77,16 @@ export default function TreeAdd() {
 
   return (
     <Paper className={classes.root}>
+      <Typography variant="h6" gutterBottom>
+        Se deben de rellenar con los datos del fabrecante, y se recomienda
+        utilizar los datos de:
+        <a
+          target="_blank"
+          href="https://www.infoagro.com/agrovademecum/index.asp"
+        >
+          AGROVADEMÉCUM
+        </a>
+      </Typography>
       <Formik
         initialValues={{
           name: '',
@@ -97,7 +108,7 @@ export default function TreeAdd() {
           ],
         }}
         validationSchema={SignupSchema}
-        onSubmit={async values => {
+        onSubmit={async (values, actions) => {
           await collection
             .insert({
               ...values,
@@ -117,6 +128,7 @@ export default function TreeAdd() {
             type: 'success',
             message: 'Producto añadido con éxito',
           })
+          actions.resetForm()
         }}
       >
         {({ isSubmitting, values }) => (

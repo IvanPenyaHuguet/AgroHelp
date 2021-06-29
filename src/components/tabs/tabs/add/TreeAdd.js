@@ -36,7 +36,7 @@ export default function TreeAdd() {
           variety: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={async values => {
+        onSubmit={async (values, actions) => {
           await collection
             .insert({
               ...values,
@@ -55,6 +55,7 @@ export default function TreeAdd() {
             type: 'success',
             message: 'Cultivo añadido con éxito',
           })
+          actions.resetForm()
         }}
       >
         {({ isSubmitting }) => (
