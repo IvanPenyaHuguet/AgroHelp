@@ -2,6 +2,7 @@ import AlertContext from '../context/AlertContext'
 import Parcelas from './tabs/tabs/Parcelas'
 import Cultivos from './tabs/tabs/Cultivos'
 import Reagents from './tabs/tabs/Reagents'
+import Historic from './tabs/tabs/Historic'
 import AddTabs from './tabs/tabs/add/AddTabs'
 import ParcelaAdd from './tabs/tabs/add/ParcelaAdd'
 import TreeAdd from './tabs/tabs/add/TreeAdd'
@@ -46,4 +47,5 @@ export {
   AutocompleteField,
   RefCatInput,
   SelectFieldReagent,
+  Historic,
 }
