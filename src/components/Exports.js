@@ -20,6 +20,7 @@ import FieldArrayTreeOnReagent from './form/FieldArrayTreeOnReagent'
 import TextFieldWithSelect from './form/TextFieldWithSelect'
 import DatePicker from './form/DatePicker'
 import RefCatInput from './form/RefCatInput'
+import SelectFieldReagent from './form/SelectFieldReagent'
 
 export {
   AlertContext,
@@ -44,4 +45,5 @@ export {
   DatePicker,
   AutocompleteField,
   RefCatInput,
+  SelectFieldReagent,
 }

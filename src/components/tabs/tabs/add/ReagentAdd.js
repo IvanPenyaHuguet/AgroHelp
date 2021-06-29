@@ -78,7 +78,7 @@ export default function TreeAdd() {
   return (
     <Paper className={classes.root}>
       <Typography variant="h6" gutterBottom>
-        Se deben de rellenar con los datos del fabrecante, y se recomienda
+        Se deben de rellenar con los datos del fabricante, y se recomienda
         utilizar los datos de:
         <a
           target="_blank"

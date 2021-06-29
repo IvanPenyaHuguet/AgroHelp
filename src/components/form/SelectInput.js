@@ -30,6 +30,7 @@ const menuItems = items => {
 
 export default function SelectInput({ label, name, items, ...props }) {
   const classes = useStyles()
+
   return (
     <FormControl className={classes.root}>
       <InputLabel htmlFor={`id-${name}`} variant="outlined">

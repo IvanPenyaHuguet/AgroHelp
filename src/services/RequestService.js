@@ -1,5 +1,6 @@
 import RefCatToLocation from './helpers/RefCatToLocation'
 import { URL } from '../config/URLS'
+import * as Database from './database/Database'
 
 export async function GetJSON(url, params) {
   let requestUrl = new window.URL(url)
@@ -57,6 +58,45 @@ export async function GetFieldsAreas(refCat) {
     })
     plantedArea = (plantedArea / 10000).toFixed(5)
     return { area, plantedArea }
+  } catch (err) {
+    console.error(err)
+    const area = 0
+    const plantedArea = 0
+    return { area, plantedArea }
+  }
+}
+
+export async function GetReagentData(regNum, treeId) {
+  const params = {
+    p1: 'mg',
+    p2: 'usos',
+    p3: '"' + regNum + '"',
+  }
+  try {
+    const results = await GetJSON(URL.CITRUSVOL_AGROVADEMECUM, params)
+    const db = await Database.getDatabase()
+    const objects = await db.trees
+      .findOne({
+        selector: {
+          _id: treeId,
+        },
+      })
+      .exec()
+    const treeName = objects.name.toUpperCase()
+    const data = JSON.parse(atob(results.data))
+    let dosis = {
+      minDose: 0,
+      maxDose: 0,
+    }
+    data.forEach(obj => {
+      if (obj.uso.toUpperCase() == treeName) {
+        dosis.minDose =
+          Number(obj.dosis1) > 100 ? Number(obj.dosis1) / 10000 : obj.dosis1
+        dosis.maxDose =
+          Number(obj.dosis2) > 100 ? Number(obj.dosis2) / 10000 : obj.dosis2
+      }
+    })
+    return dosis
   } catch (err) {
     console.error(err)
     const area = 0

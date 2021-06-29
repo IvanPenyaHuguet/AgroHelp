@@ -1,6 +1,6 @@
 import { FieldArray } from 'formik'
 
-import { TextField, SelectInput } from '../Exports'
+import { TextField, SelectFieldReagent } from '../Exports'
 
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -36,10 +36,11 @@ export default function FieldArrayInputs({
                 <CardHeader title={label} subheader={sublabel} />
                 <CardContent>
                   <Typography paragraph component="div">
-                    <SelectInput
+                    <SelectFieldReagent
                       name={`${name}.${index}.tree`}
                       label="Cultivo"
                       items={isFetching ? [] : result}
+                      index={index}
                     />
                     <TextField
                       name={`${name}.${index}.minDose`}
