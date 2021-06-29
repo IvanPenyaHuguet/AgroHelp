@@ -19,6 +19,7 @@ import AutocompleteField from './form/AutocompleteField'
 import FieldArrayTreeOnReagent from './form/FieldArrayTreeOnReagent'
 import TextFieldWithSelect from './form/TextFieldWithSelect'
 import DatePicker from './form/DatePicker'
+import RefCatInput from './form/RefCatInput'
 
 export {
   AlertContext,
@@ -42,4 +43,5 @@ export {
   HistoricAdd,
   DatePicker,
   AutocompleteField,
+  RefCatInput,
 }

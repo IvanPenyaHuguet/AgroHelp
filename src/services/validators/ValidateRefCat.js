@@ -1,13 +1,22 @@
 export default function validarReferenciaCatastral(referenciaCatastral) {
+  //Sólo se comprueban las referencias catastrales con 20 carácteres alfanuméricos,
+  //los dos últimos corresponden a los dígitos de control.
+  if (referenciaCatastral == null || referenciaCatastral.length !== 20) {
+    return false
+  }
+  const dcCalculado = calculoLetrasReferenciaCatastral(referenciaCatastral)
+
+  if (dcCalculado !== referenciaCatastral.substring(18, 20)) {
+    return false
+  }
+  return true
+}
+
+export function calculoLetrasReferenciaCatastral(referenciaCatastral) {
   //Valor por el que se debe multiplicar cada posición de cada subcadena
   const pesoPosicion = [13, 15, 12, 5, 4, 17, 9, 21, 3, 7, 1]
   const letraDc = 'MQWERTYUIOPASDFGHJKLBZX'
 
-  //Sólo se comprueban las referencias catastrales con 20 carácteres alfanuméricos,
-  //los dos últimos corresponden a los dígitos de control.
-  if (referenciaCatastral === null || referenciaCatastral.length !== 20) {
-    return false
-  }
   referenciaCatastral = referenciaCatastral.toUpperCase()
 
   //Para calcular cada dígito de control se utilizan siguientes subcadenas
@@ -47,9 +56,5 @@ export default function validarReferenciaCatastral(referenciaCatastral) {
     //Valor del dígito de control calculado
     dcCalculado += letraDc.charAt(sumaDigitos)
   })
-
-  if (dcCalculado !== referenciaCatastral.substring(18, 20)) {
-    return false
-  }
-  return true
+  return dcCalculado
 }

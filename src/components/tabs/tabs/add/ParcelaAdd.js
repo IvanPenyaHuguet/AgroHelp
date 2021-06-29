@@ -5,7 +5,14 @@ import dayjs from 'dayjs'
 import { useRxCollection, useRxData } from 'rxdb-hooks'
 
 import validateRefCat from '../../../../services/validators/ValidateRefCat'
-import { Paper, TextField, Button, Form, SelectInput } from '../../../Exports'
+import {
+  Paper,
+  TextField,
+  Button,
+  Form,
+  SelectInput,
+  RefCatInput,
+} from '../../../Exports'
 import { AlertContext } from '../../../../context/AlertContext'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -94,7 +101,7 @@ export default function ParcelaAdd() {
       >
         {({ isSubmitting }) => (
           <Form>
-            <TextField name="refCast" label="Referencia catastral" />
+            <RefCatInput name="refCast" label="Referencia catastral" />
             <TextField name="name" label="Nombre" />
             <TextField name="province" label="Cod. Provincia" type="number" />
             <TextField name="town" label="Cod. Municipio" type="number" />
