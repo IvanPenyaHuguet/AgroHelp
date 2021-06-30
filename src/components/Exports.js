@@ -13,6 +13,7 @@ import Container from './layouts/Container'
 import Accordion from './accordions/Accordion'
 import CalculateNecesary from './accordions/parcelas/CalculateNecesary'
 import Popover from './layouts/pops/PopOver'
+import CalculateUnits from './layouts/pops/CalculateUnits'
 import Paper from './layouts/Paper'
 import TextField from './form/TextField'
 import Button from './form/Button'
@@ -52,4 +53,5 @@ export {
   Historic,
   Accordion,
   CalculateNecesary,
+  CalculateUnits,
 }

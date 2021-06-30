@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import dayjs from 'dayjs'
@@ -12,6 +12,8 @@ import {
   Button,
   Form,
   FieldArrayTreeOnReagent,
+  Popover,
+  CalculateUnits,
 } from '../../../Exports'
 
 import { units } from '../../../../config/Units'
@@ -23,6 +25,14 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
   root: {
     height: '100%',
+  },
+  underline: {
+    textDecoration: 'underline',
+    '&:hover': {
+      color: '#B481FF',
+      backgroundColor: '#FFEAAC',
+      cursor: 'pointer',
+    },
   },
 })
 
@@ -74,9 +84,17 @@ export default function TreeAdd() {
   const classes = useStyles()
   const collection = useRxCollection('reagents')
   const { setAlert } = useContext(AlertContext)
+  const [anchorElCalc, setAnchorElCalc] = useState(null)
+
+  const handleCalcClick = event => {
+    setAnchorElCalc(event.currentTarget)
+  }
 
   return (
     <Paper className={classes.root}>
+      <Popover anchorEl={anchorElCalc} setAnchorEl={setAnchorElCalc}>
+        <CalculateUnits />
+      </Popover>
       <Typography variant="h6" gutterBottom>
         Se deben de rellenar con los datos del fabricante, y se recomienda
         utilizar los datos de:
@@ -86,6 +104,15 @@ export default function TreeAdd() {
         >
           AGROVADEMÉCUM
         </a>
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        className={classes.underline}
+        gutterBottom
+        onClick={handleCalcClick}
+      >
+        Puedes pulsar aqui para recibir ayuda en la conversion de unidades, para
+        expresar en % las dosis.
       </Typography>
       <Formik
         initialValues={{

@@ -36,6 +36,7 @@ const AccordionComponent = ({
       expanded={expanded === panel}
       onChange={handleChange(panel)}
       TransitionProps={{ unmountOnExit: true }}
+      elevation={3}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className={classes.heading}>{header}</Typography>

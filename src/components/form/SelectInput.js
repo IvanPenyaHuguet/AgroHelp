@@ -43,6 +43,7 @@ export default function SelectInput({ label, name, items, ...props }) {
         inputProps={{
           id: `id-${name}`,
         }}
+        {...props}
       >
         {menuItems(items)}
       </Field>

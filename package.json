@@ -90,8 +90,8 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "name": "AgroHelper",
-        "executableName": "AgroHelperInicio",
+        "name": "AgroHelp",
+        "executableName": "AgroHelp",
         "icon": "assets/icon",
         "extraResource": [
           "assets"
@@ -124,7 +124,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Electron Starter"
+            "name": "AgroHelp"
           }
         },
         {
