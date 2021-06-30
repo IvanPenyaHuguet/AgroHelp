@@ -10,6 +10,8 @@ import ReagentAdd from './tabs/tabs/add/ReagentAdd'
 import HistoricAdd from './tabs/tabs/add/HistoricAdd'
 import TabPanel from './tabs/Tabpanel'
 import Container from './layouts/Container'
+import Accordion from './accordions/Accordion'
+import CalculateNecesary from './accordions/parcelas/CalculateNecesary'
 import Popover from './layouts/pops/PopOver'
 import Paper from './layouts/Paper'
 import TextField from './form/TextField'
@@ -48,4 +50,6 @@ export {
   RefCatInput,
   SelectFieldReagent,
   Historic,
+  Accordion,
+  CalculateNecesary,
 }

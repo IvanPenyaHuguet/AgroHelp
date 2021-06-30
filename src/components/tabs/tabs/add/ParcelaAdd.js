@@ -92,6 +92,7 @@ export default function ParcelaAdd() {
               tree: {
                 name: tree.name,
                 variety: tree.variety,
+                id: tree._id,
               },
               createdAt: dayjs().valueOf(),
               updatedAt: dayjs().valueOf(),

@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as dayjs from 'dayjs'
 import { DataGrid, GridToolbar } from '@material-ui/data-grid'
 import TableContainer from '../components/TableContainer'
 import CustomLoadingOverlay from '../components/LoadingOverlay'
 import CustomNoRowsOverlay from '../components/NoRowsOverlay'
+import { Paper } from '../../Exports'
+import { makeStyles } from '@material-ui/core/styles'
 
 import * as Database from '../../../services/database/Database'
 
@@ -13,35 +15,34 @@ const columns = [
     headerName: 'Ref. Catastro',
     type: 'string',
     description: 'Referencia catastral de la parcela',
-    flex: 0.8,
+    flex: 1,
   },
   {
     field: 'name',
     headerName: 'Nombre',
     type: 'string',
     description: 'Nombre de la parcela',
-    flex: 0.7,
+    flex: 1,
   },
   {
     field: 'area',
     headerName: 'Área (ha)',
     description: 'Area de la parcela total en hectareas',
     type: 'number',
-    flex: 0.5,
+    width: 140,
   },
-  ,
   {
     field: 'plantedArea',
     headerName: 'Área Plantada (ha)',
     type: 'number',
     description: 'Area de la parcela plantada en hectareas',
-    flex: 0.5,
+    width: 200,
   },
   {
     field: 'tree',
     headerName: 'Cultivo',
     type: 'string',
-    flex: 0.6,
+    flex: 1,
     valueFormatter: ({ value }) => value.name + ' ' + value.variety,
   },
   {
@@ -49,14 +50,14 @@ const columns = [
     headerName: 'Cantidad',
     type: 'number',
     description: 'Cantidad de arboles en la parcela',
-    flex: 0.5,
+    width: 140,
   },
   {
     field: 'province',
     type: 'number',
     headerName: 'Provincia',
     description: 'Provincia en la que se encuentra la parcela',
-    flex: 0.5,
+    width: 150,
     hide: true,
   },
   {
@@ -64,20 +65,20 @@ const columns = [
     type: 'number',
     headerName: 'Ciudad',
     description: 'Ciudad en la que se encuentra la parcela',
-    flex: 0.5,
+    width: 140,
     hide: true,
   },
   {
     field: 'polygon',
     type: 'number',
     headerName: 'Polígono',
-    flex: 0.5,
+    width: 140,
   },
   {
     field: 'parcel',
     type: 'number',
     headerName: 'Parcela',
-    flex: 0.5,
+    width: 140,
   },
   {
     field: 'createdAt',
@@ -105,10 +106,18 @@ const columns = [
   },
 ]
 
-export default function TableWithData() {
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    height: 'calc(100% - 60px)',
+    width: '100%',
+  },
+})
+
+const TableWithData = ({ rowSelected, setRowSelected }) => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
-  const [selectionModel, setSelectionModel] = useState([])
+  const classes = useStyles()
 
   useEffect(async () => {
     setLoading(true)
@@ -117,14 +126,17 @@ export default function TableWithData() {
     setLoading(false)
     setData(objects)
   }, [])
-  console.log(data)
 
-  const handleSelection = selection => {
-    setSelectionModel(selection.selectionModel)
+  const handleRowSelected = param => {
+    const newSelected = [...rowSelected]
+    param.isSelected
+      ? newSelected.push(param.data)
+      : newSelected.splice(newSelected.indexOf(param.data), 1)
+    setRowSelected(newSelected)
   }
 
   return (
-    <TableContainer>
+    <Paper className={classes.root}>
       <DataGrid
         components={{
           Toolbar: GridToolbar,
@@ -136,7 +148,11 @@ export default function TableWithData() {
         loading={loading}
         rowsPerPageOptions={[10, 25, 50, 100]}
         getRowId={row => row._id}
+        onRowSelected={handleRowSelected}
+        checkboxSelection
+        disableSelectionOnClick
       />
-    </TableContainer>
+    </Paper>
   )
 }
+export default React.memo(TableWithData)

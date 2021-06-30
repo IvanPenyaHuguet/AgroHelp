@@ -28,6 +28,9 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
         variety: {
           type: 'string',
         },
+        id: {
+          type: 'string',
+        },
       },
     },
     quantity: {

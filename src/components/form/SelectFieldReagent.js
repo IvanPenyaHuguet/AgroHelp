@@ -6,6 +6,7 @@ import { GetReagentData } from '../../services/RequestService'
 export default function SelectFieldReagent({ name, label, items, index }) {
   const { values, setFieldValue } = useFormikContext()
   const { trees, nReg } = values
+  const { tree } = trees[index]
 
   useEffect(async () => {
     if (trees && nReg && trees[index] && trees[index].tree) {
@@ -13,7 +14,7 @@ export default function SelectFieldReagent({ name, label, items, index }) {
       setFieldValue(`trees.${index}.minDose`, dosis.minDose, false)
       setFieldValue(`trees.${index}.maxDose`, dosis.maxDose, false)
     }
-  }, [trees, nReg])
+  }, [tree, nReg, setFieldValue])
 
   return <SelectInput name={name} label={label} items={items} />
 }

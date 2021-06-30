@@ -98,13 +98,9 @@ const columns = [
   {
     field: 'maxDoseReagent',
     type: 'number',
-    headerName: 'Dosis Max.',
+    headerName: 'Dosis Max. (%)',
     description: 'Dosis maxima permitida',
     flex: 0.5,
-    valueFormatter: params => {
-      return `${params.value} ${params.row.unitReagent}`
-    },
-    valueParser: value => Number(value),
   },
   {
     field: 'createdAt',

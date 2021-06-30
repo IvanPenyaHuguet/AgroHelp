@@ -1,3 +1,4 @@
+import React from 'react'
 import { TextField } from 'formik-material-ui'
 import { Field } from 'formik'
 
@@ -9,7 +10,7 @@ const useStyles = makeStyles({
   },
 })
 
-export default function ({ label, name, ...props }) {
+const TextFieldInput = ({ label, name, ...props }) => {
   const classes = useStyles()
   return (
     <Field
@@ -22,3 +23,5 @@ export default function ({ label, name, ...props }) {
     />
   )
 }
+
+export default React.memo(TextFieldInput)

@@ -1,5 +1,6 @@
-import Container from '../../layouts/Container'
+import { useState } from 'react'
 import ParcelasTable from '../../table/tables/ParcelasTable'
+import { Accordion, Container, CalculateNecesary } from '../../Exports'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -13,9 +14,20 @@ const useStyles = makeStyles({
 
 export default function Parcelas() {
   const classes = useStyles()
+  const [rowSelected, setRowSelected] = useState([])
+
   return (
     <Container className={classes.root}>
-      <ParcelasTable />
+      <ParcelasTable
+        rowSelected={rowSelected}
+        setRowSelected={setRowSelected}
+      />
+      <Accordion
+        header="Cálculo cuba fitosanitario"
+        subheader="Selecciona en la tabla y realiza aqui el calculo"
+      >
+        <CalculateNecesary rowSelected={rowSelected} />
+      </Accordion>
     </Container>
   )
 }
