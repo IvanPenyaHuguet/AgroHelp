@@ -42,13 +42,14 @@ const SignupSchema = Yup.object().shape({
     .required('Necesario'),
   quantity: Yup.number('Debe de ser un numero')
     .integer('Debe de ser un numero entero')
-    .positive('Debe de ser un numero positivo')
+    .min(0, 'Debe de ser un numero positivo')
     .required('Necesario'),
 })
 
 export default function ParcelaAdd() {
   const classes = useStyles()
   const collection = useRxCollection('fields')
+  const collectionTree = useRxCollection('trees')
   const { setAlert } = useContext(AlertContext)
 
   const { result, isFetching } = useRxData(
@@ -75,28 +76,39 @@ export default function ParcelaAdd() {
           tree: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={(values, actions) => {
-          collection
-            .insert({
+        onSubmit={async (values, actions) => {
+          try {
+            const tree = await collectionTree
+              .findOne({
+                selector: {
+                  _id: values.tree,
+                },
+              })
+              .exec()
+            await collection.insert({
               ...values,
+              area: parseFloat(values.area.toFixed(5)),
+              plantedArea: parseFloat(values.plantedArea.toFixed(5)),
+              tree: {
+                name: tree.name,
+                variety: tree.variety,
+              },
               createdAt: dayjs().valueOf(),
               updatedAt: dayjs().valueOf(),
             })
-            .then(res => {
-              setAlert({
-                type: 'success',
-                message: 'Parcela añadida con éxito',
-              })
-              actions.resetForm()
+            setAlert({
+              type: 'success',
+              message: 'Parcela añadida con éxito',
             })
-            .catch(err => {
-              console.error(err)
-              setAlert({
-                type: 'error',
-                message:
-                  'Error no controlado, envia un email a ivanpenyahuguet@gmail.com',
-              })
+            actions.resetForm()
+          } catch (err) {
+            console.error(err)
+            setAlert({
+              type: 'error',
+              message:
+                'Error no controlado, envia un email a ivanpenyahuguet@gmail.com',
             })
+          }
         }}
       >
         {({ isSubmitting }) => (

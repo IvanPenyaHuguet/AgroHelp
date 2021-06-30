@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import * as dayjs from 'dayjs'
-import Table from '../components/Table'
+import { DataGrid, GridToolbar } from '@material-ui/data-grid'
+import TableContainer from '../components/TableContainer'
+import CustomLoadingOverlay from '../components/LoadingOverlay'
+import CustomNoRowsOverlay from '../components/NoRowsOverlay'
 
 import * as Database from '../../../services/database/Database'
 
@@ -35,17 +38,11 @@ const columns = [
     flex: 0.5,
   },
   {
-    field: 'tree.name',
-    headerName: 'Arbol',
+    field: 'tree',
+    headerName: 'Cultivo',
     type: 'string',
     flex: 0.6,
-  },
-  {
-    field: 'tree.variety',
-    headerName: 'Variedad',
-    description: 'Variedad de los arboles si procede',
-    type: 'string',
-    flex: 0.6,
+    valueFormatter: ({ value }) => value.name + ' ' + value.variety,
   },
   {
     field: 'quantity',
@@ -75,14 +72,12 @@ const columns = [
     type: 'number',
     headerName: 'Polígono',
     flex: 0.5,
-    hide: true,
   },
   {
     field: 'parcel',
     type: 'number',
     headerName: 'Parcela',
     flex: 0.5,
-    hide: true,
   },
   {
     field: 'createdAt',
@@ -119,27 +114,29 @@ export default function TableWithData() {
     setLoading(true)
     const db = await Database.getDatabase()
     const objects = await db.fields.find().exec()
-    /* const objects2 = await objects.map(object => {
-      return { ...object, tree: object.populate('trees') }
-    })
-    console.log(objects2)
-    console.log(objects) */
     setLoading(false)
     setData(objects)
   }, [])
+  console.log(data)
 
   const handleSelection = selection => {
     setSelectionModel(selection.selectionModel)
   }
 
   return (
-    <Table
-      columns={columns}
-      rows={data}
-      loading={loading}
-      checkboxSelection
-      selectionModel={selectionModel}
-      onSelectionModelChange={handleSelection}
-    />
+    <TableContainer>
+      <DataGrid
+        components={{
+          Toolbar: GridToolbar,
+          LoadingOverlay: CustomLoadingOverlay,
+          NoRowsOverlay: CustomNoRowsOverlay,
+        }}
+        columns={columns}
+        rows={data}
+        loading={loading}
+        rowsPerPageOptions={[10, 25, 50, 100]}
+        getRowId={row => row._id}
+      />
+    </TableContainer>
   )
 }

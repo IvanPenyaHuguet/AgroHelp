@@ -20,8 +20,15 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
       minimum: 0,
     },
     tree: {
-      ref: 'trees',
-      type: 'string',
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string',
+        },
+        variety: {
+          type: 'string',
+        },
+      },
     },
     quantity: {
       type: 'number',

@@ -11,16 +11,20 @@ export default function RefCatInput({ name, label }) {
   const refCastError = errors.refCast
 
   useEffect(async () => {
-    if (refCast && refCast.length == 20 && !refCastError && !parcel) {
+    if (
+      refCast &&
+      refCast.length == 20 &&
+      !refCastError &&
+      !parcel &&
+      !province
+    ) {
       const areas = await GetFieldsAreas(refCast)
       setValues({ ...values, ...RefCatToLocation(refCast), ...areas }, false)
     }
   }, [refCast, refCastError, setValues])
 
   useEffect(() => {
-    console.log('a')
     if (province && town && polygon && parcel) {
-      console.log('b')
       setValues(
         {
           ...values,

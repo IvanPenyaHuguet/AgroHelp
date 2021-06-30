@@ -2,7 +2,6 @@ import { calculoLetrasReferenciaCatastral } from '../validators/ValidateRefCat'
 
 export default function LocationToRefCat(inputObject) {
   let refCat = ''
-  console.log(inputObject)
   const { province, town, polygon, parcel } = inputObject
   refCat += province.toString().padStart(2, '0')
   refCat += town.toString().padStart(3, '0')

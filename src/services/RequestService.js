@@ -48,7 +48,7 @@ export async function GetFieldsAreas(refCat) {
     }
 
     let area = await GetJSON(URL.SIGPAC_AREA_TOTAL, params)
-    area = (area.parcelaInfo.dn_surface / 10000).toFixed(5)
+    area = parseFloat((area.parcelaInfo.dn_surface / 10000).toFixed(5))
     const plantedAreaData = await GetJSON(URL.SIGPAC_AREA_PLANTADA, params)
     let plantedArea = 0
     plantedAreaData.usos.forEach(uso => {
@@ -56,7 +56,7 @@ export async function GetFieldsAreas(refCat) {
         plantedArea += Number(uso.dn_surface)
       }
     })
-    plantedArea = (plantedArea / 10000).toFixed(5)
+    plantedArea = parseFloat((plantedArea / 10000).toFixed(5))
     return { area, plantedArea }
   } catch (err) {
     console.error(err)
