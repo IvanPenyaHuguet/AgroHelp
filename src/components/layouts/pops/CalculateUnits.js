@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
   input: {
     width: '200px',
+    margin: '10px',
   },
 }))
 

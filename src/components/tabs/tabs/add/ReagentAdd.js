@@ -4,7 +4,6 @@ import * as Yup from 'yup'
 import dayjs from 'dayjs'
 import { useRxCollection } from 'rxdb-hooks'
 import Typography from '@material-ui/core/Typography'
-
 import {
   Paper,
   TextField,
@@ -14,6 +13,7 @@ import {
   FieldArrayTreeOnReagent,
   Popover,
   CalculateUnits,
+  Container,
 } from '../../../Exports'
 
 import { units } from '../../../../config/Units'
@@ -25,6 +25,8 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
   root: {
     height: '100%',
+    width: '100%',
+    padding: 0,
   },
   underline: {
     textDecoration: 'underline',
@@ -33,6 +35,18 @@ const useStyles = makeStyles({
       backgroundColor: '#FFEAAC',
       cursor: 'pointer',
     },
+  },
+  formcontainer: {
+    height: 'calc(100% - 60px)',
+    width: '100%',
+  },
+  form: {
+    margin: '5px 25px',
+    width: '100%',
+  },
+  small: {
+    margin: '20px',
+    width: '120px',
   },
 })
 
@@ -91,7 +105,7 @@ export default function TreeAdd() {
   }
 
   return (
-    <Paper className={classes.root}>
+    <Container className={classes.root}>
       <Popover anchorEl={anchorElCalc} setAnchorEl={setAnchorElCalc}>
         <CalculateUnits />
       </Popover>
@@ -159,21 +173,33 @@ export default function TreeAdd() {
         }}
       >
         {({ isSubmitting, values }) => (
-          <Form>
-            <TextField name="nReg" label="Nº Registro" type="number" />
-            <TextField name="name" label="Nombre" />
-            <TextField name="product" label="Producto" />
-            <TextField name="supplier" label="Proveedor" />
-            <TextFieldWithSelect
-              name="quantityTotal"
-              label="Cantidad"
-              labelSelect="Unidad"
-              nameSelect="unit"
-              valueAvatar={values.unit}
-              items={units}
-            />
-            <TextField name="price" label="Precio" type="number" />
-            <TextField name="observations" label="Observaciones" rows="3" />
+          <Form className={classes.formcontainer}>
+            <Paper className={classes.form}>
+              <TextField
+                name="nReg"
+                label="Nº Registro"
+                type="number"
+                className={classes.small}
+              />
+              <TextField name="name" label="Nombre" />
+              <TextField name="product" label="Producto" />
+              <TextField name="supplier" label="Proveedor" />
+              <TextFieldWithSelect
+                name="quantityTotal"
+                label="Cantidad"
+                labelSelect="Unidad"
+                nameSelect="unit"
+                valueAvatar={values.unit}
+                items={units}
+              />
+              <TextField
+                name="price"
+                label="Precio"
+                type="number"
+                className={classes.small}
+              />
+              <TextField name="observations" label="Observaciones" rows="3" />
+            </Paper>
             <FieldArrayTreeOnReagent
               name="trees"
               label="Limitaciones cultivo"
@@ -187,6 +213,6 @@ export default function TreeAdd() {
           </Form>
         )}
       </Formik>
-    </Paper>
+    </Container>
   )
 }

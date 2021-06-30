@@ -13,12 +13,33 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 
 import { useRxData } from 'rxdb-hooks'
 
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles({
+  card: {
+    margin: '25px',
+    width: '100%',
+  },
+  cardcontent: {
+    display: 'flex',
+    alignItems: 'start',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    height: '160px',
+  },
+  small: {
+    margin: '20px',
+    width: '110px',
+  },
+})
+
 export default function FieldArrayInputs({
   name,
   label,
   sublabel = '',
   values,
 }) {
+  const classes = useStyles()
   const { result, isFetching } = useRxData(
     'trees',
     collection => collection.find(),
@@ -32,37 +53,36 @@ export default function FieldArrayInputs({
         <>
           {values.length > 0 &&
             values.map((value, index) => (
-              <Card variant="outlined" key={index}>
+              <Card variant="outlined" key={index} className={classes.card}>
                 <CardHeader title={label} subheader={sublabel} />
-                <CardContent>
-                  <Typography paragraph component="div">
-                    <SelectFieldReagent
-                      name={`${name}.${index}.tree`}
-                      label="Cultivo"
-                      items={isFetching ? [] : result}
-                      index={index}
-                    />
-                    <TextField
-                      name={`${name}.${index}.minDose`}
-                      label="Dosis Min. (%)"
-                      type="number"
-                    />
-                    <TextField
-                      name={`${name}.${index}.maxDose`}
-                      label="Dosis Max. (%)"
-                      type="number"
-                    />
-                    <TextField
-                      name={`${name}.${index}.disease`}
-                      label="Enfermedad"
-                    />
-                    <TextField
-                      name={`${name}.${index}.term`}
-                      label="Plazo espera"
-                    />
-                  </Typography>
-                </CardContent>
-                <CardActions>
+                <CardContent className={classes.cardcontent}>
+                  <SelectFieldReagent
+                    name={`${name}.${index}.tree`}
+                    label="Cultivo"
+                    items={isFetching ? [] : result}
+                    index={index}
+                  />
+                  <TextField
+                    name={`${name}.${index}.minDose`}
+                    label="Dosis Min. (%)"
+                    type="number"
+                    className={classes.small}
+                  />
+                  <TextField
+                    name={`${name}.${index}.maxDose`}
+                    label="Dosis Max. (%)"
+                    type="number"
+                    className={classes.small}
+                  />
+                  <TextField
+                    name={`${name}.${index}.disease`}
+                    label="Enfermedad"
+                  />
+                  <TextField
+                    name={`${name}.${index}.term`}
+                    label="Plazo espera"
+                    className={classes.small}
+                  />
                   <IconButton
                     aria-label="Menos"
                     color="secondary"
@@ -85,7 +105,7 @@ export default function FieldArrayInputs({
                   >
                     <AddCircleIcon fontSize="large" />
                   </IconButton>
-                </CardActions>
+                </CardContent>
               </Card>
             ))}
         </>

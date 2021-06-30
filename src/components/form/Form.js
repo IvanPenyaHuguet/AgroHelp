@@ -8,7 +8,11 @@ const useStyles = makeStyles({
   },
 })
 
-export default function ({ children }) {
+export default function ({ children, ...props }) {
   const classes = useStyles()
-  return <Form className={classes.root}>{children}</Form>
+  return (
+    <Form className={classes.root} {...props}>
+      {children}
+    </Form>
+  )
 }
