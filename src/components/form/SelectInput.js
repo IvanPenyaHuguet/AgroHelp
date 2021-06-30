@@ -12,6 +12,7 @@ const useStyles = makeStyles({
     margin: '20px',
     width: '200px',
     minWidth: '200px',
+    height: '80px',
   },
   label: {
     transform: 'translate(14px, 20px) scale(1)',

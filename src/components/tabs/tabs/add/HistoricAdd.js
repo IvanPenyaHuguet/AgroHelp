@@ -20,6 +20,15 @@ const useStyles = makeStyles({
   root: {
     height: '100%',
   },
+  form: {
+    width: '90%',
+    minWidth: '1100px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    margin: '0 auto',
+  },
 })
 
 const SignupSchema = Yup.object().shape({
@@ -97,7 +106,7 @@ export default function HistoricAdd() {
         }}
       >
         {({ isSubmitting, errors, touched }) => (
-          <Form>
+          <Form className={classes.form}>
             <AutocompleteField
               name="field"
               label="Parcela"

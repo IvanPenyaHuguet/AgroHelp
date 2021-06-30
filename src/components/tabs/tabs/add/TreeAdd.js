@@ -14,6 +14,11 @@ const useStyles = makeStyles({
   root: {
     height: '100%',
   },
+  form: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })
 
 const SignupSchema = Yup.object().shape({
@@ -59,7 +64,7 @@ export default function TreeAdd() {
         }}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className={classes.form}>
             <TextField name="name" label="Nombre Com." />
             <TextField name="variety" label="Variedad" />
 
