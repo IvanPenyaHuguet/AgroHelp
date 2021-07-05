@@ -48,6 +48,40 @@ export const reagentSchema: RxJsonSchema<ReagentType> = {
       type: 'number',
       minimum: 0,
     },
+    products: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          lotReagent: {
+            type: 'string',
+          },
+          buyNumber: {
+            type: 'number',
+            minimum: 0,
+          },
+          quantityTotal: {
+            type: 'number',
+            minimum: 0,
+          },
+          quantityUsed: {
+            type: 'number',
+            minimum: 0,
+          },
+          spent: {
+            type: 'boolean',
+          },
+          createdAt: {
+            type: 'number',
+            minimum: 0,
+          },
+          updatedAt: {
+            type: 'number',
+            minimum: 0,
+          },
+        },
+      },
+    },
     trees: {
       type: 'array',
       items: {

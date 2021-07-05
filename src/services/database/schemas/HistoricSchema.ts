@@ -22,6 +22,9 @@ export const historicSchema: RxJsonSchema<HistoricType> = {
       type: 'number',
       minimum: 0,
     },
+    lotReagent: {
+      type: 'string',
+    },
     nameTree: {
       type: 'string',
     },
@@ -71,6 +74,7 @@ export const historicSchema: RxJsonSchema<HistoricType> = {
     'literWater',
     'quantityUsedReagent',
     'unitReagent',
+    'lotReagent',
   ],
 }
 

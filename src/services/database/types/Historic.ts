@@ -5,6 +5,7 @@ export type HistoricType = {
   refCastField: string
   nameReagent: string
   nRegReagent: number
+  lotReagent: string
   nameTree: string
   date: number
   areaField: number
