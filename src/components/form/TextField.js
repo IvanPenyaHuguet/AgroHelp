@@ -11,14 +11,14 @@ const useStyles = makeStyles({
   },
 })
 
-const TextFieldInput = ({ label, name, ...props }) => {
+const TextFieldInput = ({ label, name, variant = 'outlined', ...props }) => {
   const classes = useStyles()
   return (
     <Field
       component={TextField}
       label={label}
       name={name}
-      variant="outlined"
+      variant={variant}
       className={classes.root}
       {...props}
     />

@@ -16,6 +16,7 @@ import Popover from './layouts/pops/PopOver'
 import CalculateUnits from './layouts/pops/CalculateUnits'
 import Paper from './layouts/Paper'
 import TextField from './form/TextField'
+import NumberField from './form/NumberField'
 import Button from './form/Button'
 import Form from './form/Form'
 import SelectInput from './form/SelectInput'
@@ -54,4 +55,5 @@ export {
   Accordion,
   CalculateNecesary,
   CalculateUnits,
+  NumberField,
 }
