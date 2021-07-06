@@ -68,7 +68,6 @@ export default function CollapsableRow(props) {
   const { result, isFetching } = useRxData('trees', collection =>
     collection.find({ selector: { _id: { $in: id.trees.map(r => r.tree) } } })
   )
-  console.log(result)
 
   return (
     <TableRow>
