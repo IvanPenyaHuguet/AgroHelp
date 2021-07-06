@@ -224,7 +224,7 @@ export default function EnhancedTable({
                               {tableCell(columns, row)}
                             </TableRow>
                             <CollapsableRow
-                              id={row.trees}
+                              id={row}
                               length={columns.length}
                               open={open}
                             />

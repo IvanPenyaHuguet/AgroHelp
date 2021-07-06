@@ -79,7 +79,7 @@ const SignupSchema = Yup.object().shape({
           .required('Necesario'),
         maxDose: Yup.number('Debe de ser un numero')
           .positive('Debe de ser un numero positivo')
-          .moreThan(Yup.ref('minDose'), 'Debe ser mayor a la dosis minima')
+          .min(Yup.ref('minDose'), 'Debe ser mayor a la dosis minima')
           .required('Necesario'),
         disease: Yup.string()
           .min(2, 'Muy corto!')
@@ -147,6 +147,7 @@ export default function TreeAdd() {
               term: 0,
             },
           ],
+          products: [],
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values, actions) => {
