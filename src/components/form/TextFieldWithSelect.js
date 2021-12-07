@@ -1,20 +1,19 @@
 import { useState } from 'react'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import IconButton from '@material-ui/core/IconButton'
-import Avatar from '@material-ui/core/Avatar'
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Avatar from '@mui/material/Avatar';
 
 import TextField from './TextField'
 import { Popover, SelectInput } from '../Exports'
 
-import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     margin: '20px',
     width: '200px',
     height: '80px',
   },
-})
+};
 
 export default function TextFieldWithSelect({
   label,
@@ -26,7 +25,7 @@ export default function TextFieldWithSelect({
   valueAvatar,
   ...props
 }) {
-  const classes = useStyles()
+
 
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -35,7 +34,7 @@ export default function TextFieldWithSelect({
   }
 
   return (
-    <>
+    <div>
       <TextField
         name={name}
         label={label}
@@ -49,11 +48,11 @@ export default function TextFieldWithSelect({
             </InputAdornment>
           ),
         }}
-        className={classes.root}
+        sx={sxClasses.root}
       />
       <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
         <SelectInput label={labelSelect} name={nameSelect} items={items} />
       </Popover>
-    </>
-  )
+    </div>
+  );
 }

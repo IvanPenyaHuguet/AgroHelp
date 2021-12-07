@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
 
 import {
   TabPanel,
@@ -14,16 +14,8 @@ import {
   HistoricAdd,
 } from '../../../Exports'
 
-import { makeStyles } from '@material-ui/core/styles'
 
-function a11yProps(index) {
-  return {
-    id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
-  }
-}
-
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     flexGrow: 1,
     padding: 0,
@@ -43,18 +35,26 @@ const useStyles = makeStyles({
     height: 'calc(100vh - 128px)',
     overflow: 'auto',
   },
-})
+};
+
+
+function a11yProps(index) {
+  return {
+    id: `nav-tab-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
+  }
+}
 
 export default function AddTabs() {
-  const classes = useStyles()
+
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
 
   return (
-    <Container className={classes.root}>
-      <AppBar position="static" className={classes.bar}>
+    <Container sx={sxClasses.root}>
+      <AppBar position="static" sx={sxClasses.bar}>
         <Toolbar>
           <Tabs
             variant="fullWidth"
@@ -69,18 +69,18 @@ export default function AddTabs() {
           </Tabs>
         </Toolbar>
       </AppBar>
-      <TabPanel value={value} index={0} className={classes.screen}>
+      <TabPanel value={value} index={0} sx={sxClasses.screen}>
         <HistoricAdd />
       </TabPanel>
-      <TabPanel value={value} index={1} className={classes.screen}>
+      <TabPanel value={value} index={1} sx={sxClasses.screen}>
         <ParcelaAdd />
       </TabPanel>
-      <TabPanel value={value} index={2} className={classes.screen}>
+      <TabPanel value={value} index={2} sx={sxClasses.screen}>
         <TreeAdd />
       </TabPanel>
-      <TabPanel value={value} index={3} className={classes.screen}>
+      <TabPanel value={value} index={3} sx={sxClasses.screen}>
         <ReagentAdd />
       </TabPanel>
     </Container>
-  )
+  );
 }

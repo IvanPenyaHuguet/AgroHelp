@@ -3,15 +3,14 @@ import { useFormikContext } from 'formik'
 
 import { useRxData } from 'rxdb-hooks'
 
-import IconButton from '@material-ui/core/IconButton'
-import TableCell from '@material-ui/core/TableCell'
-import TableRow from '@material-ui/core/TableRow'
-import SaveIcon from '@material-ui/icons/Save'
-import RotateLeftIcon from '@material-ui/icons/RotateLeft'
+import IconButton from '@mui/material/IconButton';
+import TableCell from '@mui/material/TableCell'
+import TableRow from '@mui/material/TableRow'
+import SaveIcon from '@mui/icons-material/Save'
+import RotateLeftIcon from '@mui/icons-material/RotateLeft'
 
-import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles({
+const sxClasses = {
   small: {
     width: '80px',
     height: '80px',
@@ -20,11 +19,11 @@ const useStyles = makeStyles({
     width: '130px',
     height: '80px',
   },
-})
+};
 
 export default function RowToAddCultivo() {
   const { isSubmitting, resetForm, submitForm } = useFormikContext()
-  const classes = useStyles()
+
   const { result, isFetching } = useRxData(
     'trees',
     collection => collection.find(),
@@ -50,7 +49,7 @@ export default function RowToAddCultivo() {
           label=""
           variant="standard"
           type="number"
-          className={classes.small}
+          sx={sxClasses.small}
         />
       </TableCell>
       <TableCell>
@@ -59,7 +58,7 @@ export default function RowToAddCultivo() {
           label=""
           variant="standard"
           type="number"
-          className={classes.small}
+          sx={sxClasses.small}
         />
       </TableCell>
       <TableCell>
@@ -67,7 +66,7 @@ export default function RowToAddCultivo() {
           name="disease"
           label=""
           variant="standard"
-          className={classes.big}
+          sx={sxClasses.big}
         />
       </TableCell>
       <TableCell>
@@ -76,11 +75,12 @@ export default function RowToAddCultivo() {
           label=""
           variant="standard"
           type="number"
-          className={classes.small}
+          sx={sxClasses.small}
         />
       </TableCell>
       <TableCell>
         <IconButton
+          size="large"
           color="secondary"
           aria-label="Borrar"
           component="span"
@@ -90,6 +90,7 @@ export default function RowToAddCultivo() {
           <SaveIcon />
         </IconButton>
         <IconButton
+          size="large"
           color="secondary"
           aria-label="Borrar"
           component="span"
@@ -99,5 +100,5 @@ export default function RowToAddCultivo() {
         </IconButton>
       </TableCell>
     </TableRow>
-  )
+  );
 }

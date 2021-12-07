@@ -7,17 +7,17 @@ import { Form } from '../../../Exports'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 
-import IconButton from '@material-ui/core/IconButton'
-import Box from '@material-ui/core/Box'
-import Collapse from '@material-ui/core/Collapse'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Typography from '@material-ui/core/Typography'
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse'
+import CircularProgress from '@mui/material/CircularProgress';
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Typography from '@mui/material/Typography'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
 const RowCultivoSchema = Yup.object().shape({
   tree: Yup.string()
@@ -154,6 +154,7 @@ export default function CollapsableRow(props) {
                                 color="secondary"
                                 aria-label="Borrar"
                                 component="span"
+                                size="large"
                                 disabled={isDeleting}
                                 onClick={e =>
                                   deleteTree(e, row, id, setIsDeleting)
@@ -218,6 +219,7 @@ export default function CollapsableRow(props) {
                             <TableCell>
                               <IconButton
                                 color="secondary"
+                                size="large"
                                 aria-label="Borrar"
                                 component="span"
                                 disabled={isDeleting}

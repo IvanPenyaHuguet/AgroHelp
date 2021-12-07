@@ -1,8 +1,8 @@
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import TableSortLabel from '@material-ui/core/TableSortLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+import TableCell from '@mui/material/TableCell'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import TableSortLabel from '@mui/material/TableSortLabel'
+import Checkbox from '@mui/material/Checkbox';
 
 export default function EnhancedTableHead(props) {
   const {
@@ -27,7 +27,7 @@ export default function EnhancedTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
+            inputProps={{ 'aria-label': 'select' }}
           />
         </TableCell>
         <TableCell padding="checkbox"></TableCell>
@@ -45,7 +45,7 @@ export default function EnhancedTableHead(props) {
             >
               {headCell.headerName}
               {orderBy === headCell.field ? (
-                <span className={classes.visuallyHidden}>
+                <span sx={sxClasses.visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
               ) : null}

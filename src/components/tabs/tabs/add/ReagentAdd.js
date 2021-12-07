@@ -3,7 +3,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import dayjs from 'dayjs'
 import { useRxCollection } from 'rxdb-hooks'
-import Typography from '@material-ui/core/Typography'
+import Typography from '@mui/material/Typography'
 import {
   Paper,
   TextField,
@@ -20,9 +20,7 @@ import { units } from '../../../../config/Units'
 
 import { AlertContext } from '../../../../context/AlertContext'
 
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     height: '100%',
     width: '100%',
@@ -48,7 +46,7 @@ const useStyles = makeStyles({
     margin: '20px',
     width: '120px',
   },
-})
+};
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -95,7 +93,7 @@ const SignupSchema = Yup.object().shape({
 })
 
 export default function TreeAdd() {
-  const classes = useStyles()
+
   const collection = useRxCollection('reagents')
   const { setAlert } = useContext(AlertContext)
   const [anchorElCalc, setAnchorElCalc] = useState(null)
@@ -105,7 +103,7 @@ export default function TreeAdd() {
   }
 
   return (
-    <Container className={classes.root}>
+    <Container sx={sxClasses.root}>
       <Popover anchorEl={anchorElCalc} setAnchorEl={setAnchorElCalc}>
         <CalculateUnits />
       </Popover>
@@ -121,7 +119,7 @@ export default function TreeAdd() {
       </Typography>
       <Typography
         variant="subtitle1"
-        className={classes.underline}
+        sx={sxClasses.underline}
         gutterBottom
         onClick={handleCalcClick}
       >
@@ -174,13 +172,13 @@ export default function TreeAdd() {
         }}
       >
         {({ isSubmitting, values }) => (
-          <Form className={classes.formcontainer}>
-            <Paper className={classes.form}>
+          <Form sx={sxClasses.formcontainer}>
+            <Paper sx={sxClasses.form}>
               <TextField
                 name="nReg"
                 label="Nº Registro"
                 type="number"
-                className={classes.small}
+                sx={sxClasses.small}
               />
               <TextField name="name" label="Nombre" />
               <TextField name="product" label="Producto" />
@@ -197,7 +195,7 @@ export default function TreeAdd() {
                 name="price"
                 label="Precio"
                 type="number"
-                className={classes.small}
+                sx={sxClasses.small}
               />
               <TextField name="observations" label="Observaciones" rows="3" />
             </Paper>
@@ -215,5 +213,5 @@ export default function TreeAdd() {
         )}
       </Formik>
     </Container>
-  )
+  );
 }

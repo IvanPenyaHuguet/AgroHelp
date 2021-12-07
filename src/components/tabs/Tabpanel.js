@@ -1,8 +1,7 @@
-import Box from '@material-ui/core/Box'
+import Box from '@mui/material/Box'
 
-import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     height: 'calc(100vh - 64px)',
     overflow: 'auto',
@@ -10,11 +9,11 @@ const useStyles = makeStyles({
   box: {
     height: '100%',
   },
-})
+};
 
 export default function TabPanel(props) {
   const { children, value, index, ...other } = props
-  const classes = useStyles()
+
 
   return (
     <div
@@ -22,14 +21,14 @@ export default function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      className={classes.root}
+      sx={sxClasses.root}
       {...other}
     >
       {value === index && (
-        <Box p={3} className={classes.box} {...other}>
+        <Box p={3} sx={sxClasses.box} {...other}>
           {children}
         </Box>
       )}
     </div>
-  )
+  );
 }

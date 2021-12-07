@@ -1,13 +1,17 @@
-import { DatePicker } from 'formik-material-ui-pickers'
+import { DatePicker } from 'formik-mui-lab';
 import { Field } from 'formik'
 
-import { makeStyles } from '@material-ui/core/styles'
+const PREFIX = 'DatePicker';
 
-const useStyles = makeStyles({
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const sxClasses = {
   root: {
     margin: '20px',
   },
-})
+};
 
 export default function ({
   label,
@@ -16,17 +20,17 @@ export default function ({
   variant = 'outlined',
   ...props
 }) {
-  const classes = useStyles()
+
   return (
     <Field
       component={DatePicker}
       label={label}
       name={name}
-      format={format}
+      inputFormat={format}
       disableToolbar
       variant="inline"
       inputVariant={variant}
-      className={classes.root}
+      sx={sxClasses.root}
       {...props}
     />
   )

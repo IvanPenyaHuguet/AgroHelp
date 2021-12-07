@@ -1,23 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Container, SelectInput } from '../../Exports'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormHelperText from '@material-ui/core/FormHelperText'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import TextField from '@material-ui/core/TextField'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText'
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select'
+import TextField from '@mui/material/TextField'
 
-import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles(theme => ({
+const sxClasses = {
   root: {
     margin: '25px',
   },
   input: {
     width: '200px',
     margin: '10px',
-  },
-}))
+  }
+};
 
 const Unidades = [
   {
@@ -48,7 +47,7 @@ const Unidades = [
 ]
 
 export default function CalculateUnit() {
-  const classes = useStyles()
+
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [inputUnit, setInputUnit] = useState(2)
@@ -62,7 +61,7 @@ export default function CalculateUnit() {
   }, [input, output, inputUnit, outputUnit])
 
   return (
-    <Container className={classes.root}>
+    <Container sx={sxClasses.root}>
       <Group
         label="A convertir"
         unidad={inputUnit}
@@ -79,11 +78,11 @@ export default function CalculateUnit() {
         disabled
       />
     </Container>
-  )
+  );
 }
 
 function Group({ label, unidad, value, setValue, setUnidad, ...props }) {
-  const classes = useStyles()
+
   const handleChange = event => {
     setUnidad(event.target.value)
   }
@@ -96,14 +95,15 @@ function Group({ label, unidad, value, setValue, setUnidad, ...props }) {
       <TextField
         label={label}
         value={value}
+        variant="standard"
         type="number"
         onChange={handleInput}
-        className={classes.input}
+        sx={sxClasses.input}
         {...props}
       />
-      <FormControl className={classes.input}>
+      <FormControl variant="standard" sx={sxClasses.input}>
         <InputLabel>Unidad {label}</InputLabel>
-        <Select value={unidad} onChange={handleChange}>
+        <Select variant="standard" value={unidad} onChange={handleChange}>
           {Unidades.map((unidad, i) => (
             <MenuItem key={i} value={unidad.ind}>
               {unidad.unit}

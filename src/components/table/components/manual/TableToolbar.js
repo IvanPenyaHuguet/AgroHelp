@@ -1,47 +1,40 @@
-import { lighten, makeStyles } from '@material-ui/core/styles'
+import { lighten } from '@mui/material/styles';
 
 import clsx from 'clsx'
 
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import Tooltip from '@material-ui/core/Tooltip'
-import DeleteIcon from '@material-ui/icons/Delete'
-import FilterListIcon from '@material-ui/icons/FilterList'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip'
+import DeleteIcon from '@mui/icons-material/Delete'
+import FilterListIcon from '@mui/icons-material/FilterList'
 
-const useToolbarStyles = makeStyles(theme => ({
+const sxClasses = {
   root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
+    paddingLeft: 2,
+    paddingRight: 1,
   },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
-      : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+  highlight: (theme) => ({
+    color: theme.palette.secondary.main,
+    backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+  }),
   title: {
     flex: '1 1 100%',
-  },
-}))
+  }
+};
+
 
 const EnhancedTableToolbar = props => {
-  const classes = useToolbarStyles()
+  
   const { numSelected, handleDeleteClick } = props
 
   return (
     <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
+      sx={[sxClasses.root, numSelected > 0 && sxClasses.highlight]}      
     >
       {numSelected > 0 ? (
         <Typography
-          className={classes.title}
+          sx={sxClasses.title}
           color="inherit"
           variant="subtitle1"
           component="div"
@@ -50,7 +43,7 @@ const EnhancedTableToolbar = props => {
         </Typography>
       ) : (
         <Typography
-          className={classes.title}
+          sx={sxClasses.title}
           variant="h6"
           id="tableTitle"
           component="div"
@@ -61,18 +54,18 @@ const EnhancedTableToolbar = props => {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton aria-label="delete" onClick={handleDeleteClick}>
+          <IconButton aria-label="delete" size="large" onClick={handleDeleteClick}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
         <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
+          <IconButton aria-label="filter list" size="large">
             <FilterListIcon />
           </IconButton>
         </Tooltip>
       )}
     </Toolbar>
-  )
+  );
 }
 export default EnhancedTableToolbar

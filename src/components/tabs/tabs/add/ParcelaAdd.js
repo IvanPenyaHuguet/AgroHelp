@@ -14,9 +14,8 @@ import {
   RefCatInput,
 } from '../../../Exports'
 import { AlertContext } from '../../../../context/AlertContext'
-import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     height: '100%',
   },
@@ -29,7 +28,7 @@ const useStyles = makeStyles({
     flexWrap: 'wrap',
     margin: '0 auto',
   },
-})
+};
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -56,7 +55,7 @@ const SignupSchema = Yup.object().shape({
 })
 
 export default function ParcelaAdd() {
-  const classes = useStyles()
+
   const collection = useRxCollection('fields')
   const collectionTree = useRxCollection('trees')
   const { setAlert } = useContext(AlertContext)
@@ -70,7 +69,7 @@ export default function ParcelaAdd() {
   )
 
   return (
-    <Paper className={classes.root}>
+    <Paper sx={sxClasses.root}>
       <Formik
         initialValues={{
           name: '',
@@ -122,7 +121,7 @@ export default function ParcelaAdd() {
         }}
       >
         {({ isSubmitting }) => (
-          <Form className={classes.form}>
+          <Form sx={sxClasses.form}>
             <RefCatInput name="refCast" label="Referencia catastral" />
             <TextField name="name" label="Nombre" />
             <TextField name="province" label="Cod. Provincia" type="number" />
@@ -153,5 +152,5 @@ export default function ParcelaAdd() {
         )}
       </Formik>
     </Paper>
-  )
+  );
 }

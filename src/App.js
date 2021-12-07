@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import DayJs from '@date-io/dayjs'
+import AdapterDayjs from '@mui/lab/AdapterDayjs';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { StyledEngineProvider } from '@mui/material/styles';
 require('dayjs/locale/es')
 
 import Router from './Router'
@@ -22,13 +23,15 @@ export function App() {
 
   return (
     <Provider db={db}>
-      <MuiPickersUtilsProvider utils={DayJs}>
-        <ThemeProvider>
-          <AlertContext>
-            <Router />
-          </AlertContext>
-        </ThemeProvider>
-      </MuiPickersUtilsProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider>
+            <AlertContext>
+              <Router />
+            </AlertContext>
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </LocalizationProvider>
     </Provider>
   )
 }

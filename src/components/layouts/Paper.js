@@ -1,4 +1,4 @@
-import Paper from '@material-ui/core/Paper'
+import Paper from '@mui/material/Paper'
 
 export default function ({ children, ...props }) {
   return <Paper {...props}>{children}</Paper>

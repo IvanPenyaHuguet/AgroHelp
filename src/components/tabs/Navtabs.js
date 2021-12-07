@@ -1,24 +1,15 @@
 import { useState } from 'react'
 
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
 
 import Container from '../layouts/Container'
 import TabPanel from './Tabpanel'
 import { Parcelas, AddTabs, Cultivos, Reagents, Historic } from '../Exports'
 
-import { makeStyles } from '@material-ui/core/styles'
-
-function a11yProps(index) {
-  return {
-    id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
-  }
-}
-
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     flexGrow: 1,
     padding: 0,
@@ -35,18 +26,25 @@ const useStyles = makeStyles({
   zeroPadding: {
     padding: 0,
   },
-})
+};
+
+function a11yProps(index) {
+  return {
+    id: `nav-tab-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
+  }
+}
 
 export default function NavTabs() {
-  const classes = useStyles()
+
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
 
   return (
-    <Container className={classes.root}>
-      <AppBar position="static" className={classes.bar}>
+    <Container sx={sxClasses.root}>
+      <AppBar position="static" sx={sxClasses.bar}>
         <Toolbar>
           <Tabs
             variant="fullWidth"
@@ -74,9 +72,9 @@ export default function NavTabs() {
       <TabPanel value={value} index={3}>
         <Cultivos />
       </TabPanel>
-      <TabPanel value={value} index={4} className={classes.zeroPadding}>
+      <TabPanel value={value} index={4} sx={sxClasses.zeroPadding}>
         <AddTabs />
       </TabPanel>
     </Container>
-  )
+  );
 }

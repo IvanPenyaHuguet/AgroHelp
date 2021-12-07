@@ -6,7 +6,7 @@ import { Container, TextField, Button, Form } from '../../Exports'
 import TableCalculated from './TableCalculated'
 import SelectReagent from './SelectReagent'
 import { useRxCollection } from 'rxdb-hooks'
-import Grid from '@material-ui/core/Grid'
+import Grid from '@mui/material/Grid';
 import { AlertContext } from '../../../context/AlertContext'
 
 const YupSchema = Yup.object().shape({
@@ -79,7 +79,7 @@ export default function CalculateNecessary({ rowSelected }) {
               container
               spacing={10}
               direction="row"
-              justify="space-between"
+              justifyContent="space-between"
               alignItems="center"
             >
               <Grid item xs>

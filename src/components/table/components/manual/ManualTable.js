@@ -1,17 +1,16 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TablePagination from '@material-ui/core/TablePagination'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
-import Checkbox from '@material-ui/core/Checkbox'
-import IconButton from '@material-ui/core/IconButton'
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
+import CircularProgress from '@mui/material/CircularProgress';
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TablePagination from '@mui/material/TablePagination'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 import * as dayjs from 'dayjs'
 
@@ -19,17 +18,17 @@ import EnhancedTableToolbar from './TableToolbar'
 import EnhancedTableHead from './TableHead'
 import CollapsableRow from './CollapsableRow'
 
-const useStyles = makeStyles(theme => ({
+const sxClasses = {
   root: {
     width: '100%',
     display: 'flex',
     height: '100%',
   },
-  paper: {
+  paper: (theme) => ({
     width: '100%',
     marginBottom: theme.spacing(2),
     height: '100%',
-  },
+  }),
   height: {
     height: 'calc(100% - 116px)',
   },
@@ -46,8 +45,8 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: 20,
     width: 1,
-  },
-}))
+  }
+};
 
 const tableCell = (columns, rows) => {
   return columns.map((column, ind) => {
@@ -95,7 +94,7 @@ export default function EnhancedTable({
   selected,
   setSelected,
 }) {
-  const classes = useStyles()
+
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('_id')
 
@@ -150,21 +149,21 @@ export default function EnhancedTable({
   const isSelected = name => selected.indexOf(name) !== -1
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
+    <div sx={sxClasses.root}>
+      <Paper sx={sxClasses.paper}>
         <EnhancedTableToolbar
           numSelected={selected.length}
           handleDeleteClick={handleDeleteClick}
         />
-        <TableContainer className={classes.height}>
+        <TableContainer sx={sxClasses.height}>
           <Table
-            className={classes.table}
+            sx={sxClasses.table}
             aria-labelledby="tableTitle"
             size="medium"
             aria-label="enhanced table"
           >
             <EnhancedTableHead
-              classes={classes}
+              classes={sxClasses}
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
@@ -242,10 +241,10 @@ export default function EnhancedTable({
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
     </div>
-  )
+  );
 }

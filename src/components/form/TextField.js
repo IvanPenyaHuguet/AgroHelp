@@ -1,25 +1,23 @@
 import React from 'react'
-import { TextField } from 'formik-material-ui'
+import { TextField } from 'formik-mui'
 import { Field } from 'formik'
 
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles({
+const sxClasses= {
   root: {
     margin: '20px',
     height: '80px',
   },
-})
+};
 
 const TextFieldInput = ({ label, name, variant = 'outlined', ...props }) => {
-  const classes = useStyles()
+
   return (
     <Field
       component={TextField}
       label={label}
       name={name}
       variant={variant}
-      className={classes.root}
+      sx={sxClasses.root}
       {...props}
     />
   )

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { DataGrid, GridToolbar } from '@material-ui/data-grid'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import TableContainer from '../components/TableContainer'
 import CustomLoadingOverlay from '../components/LoadingOverlay'
 import CustomNoRowsOverlay from '../components/NoRowsOverlay'

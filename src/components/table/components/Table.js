@@ -1,4 +1,4 @@
-import { DataGrid, GridToolbar } from '@material-ui/data-grid'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import TableContainer from './TableContainer'
 import CustomLoadingOverlay from './LoadingOverlay'
 import CustomNoRowsOverlay from './NoRowsOverlay'

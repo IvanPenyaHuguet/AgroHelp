@@ -1,10 +1,9 @@
-import { ThemeProvider } from '@material-ui/styles'
-import { createMuiTheme } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { esES } from '@material-ui/data-grid'
-import { esES as coreesES } from '@material-ui/core/locale'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { esES } from '@mui/x-data-grid'
+import { esES as coreesES } from '@mui/material/locale';
 
-const theme = createMuiTheme(
+const theme = createTheme(
   {
     palette: {
       primary: {
@@ -18,7 +17,7 @@ const theme = createMuiTheme(
   },
   esES,
   coreesES
-)
+);
 
 export default function Theme({ children }) {
   return (

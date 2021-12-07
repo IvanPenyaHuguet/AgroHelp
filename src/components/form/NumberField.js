@@ -1,16 +1,14 @@
 import React from 'react'
-import { TextField } from 'formik-material-ui'
+import { TextField } from 'formik-mui'
 import { Field } from 'formik'
 import NumberFormat from 'react-number-format'
 
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     margin: '20px',
     height: '80px',
   },
-})
+};
 
 function NumberFormatCustom(props) {
   const { inputRef, onChange, ...other } = props
@@ -33,14 +31,14 @@ function NumberFormatCustom(props) {
 }
 
 const NumberFieldInput = ({ label, name, variant = 'outlined', ...props }) => {
-  const classes = useStyles()
+
   return (
     <Field
       component={TextField}
       label={label}
       name={name}
       variant={variant}
-      className={classes.root}
+      sx={sxClasses.root}
       InputProps={{
         inputComponent: NumberFormatCustom,
       }}

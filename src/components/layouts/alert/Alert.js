@@ -1,5 +1,5 @@
-import Alert from '@material-ui/lab/Alert'
-import Snackbar from '@material-ui/core/Snackbar'
+import Alert from '@mui/material/Alert'
+import Snackbar from '@mui/material/Snackbar'
 
 export default function ({
   setOpen,

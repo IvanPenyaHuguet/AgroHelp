@@ -14,9 +14,8 @@ import {
   AutocompleteField,
 } from '../../../Exports'
 import { AlertContext } from '../../../../context/AlertContext'
-import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     height: '100%',
   },
@@ -29,7 +28,7 @@ const useStyles = makeStyles({
     flexWrap: 'wrap',
     margin: '0 auto',
   },
-})
+};
 
 const SignupSchema = Yup.object().shape({
   field: Yup.object().nullable().required('Necesario'),
@@ -46,13 +45,13 @@ const SignupSchema = Yup.object().shape({
 })
 
 export default function HistoricAdd() {
-  const classes = useStyles()
+
   const collection = useRxCollection('historics')
   const collectionTree = useRxCollection('trees')
   const { setAlert } = useContext(AlertContext)
 
   return (
-    <Paper className={classes.root}>
+    <Paper sx={sxClasses.root}>
       <Formik
         initialValues={{
           field: '',
@@ -106,7 +105,7 @@ export default function HistoricAdd() {
         }}
       >
         {({ isSubmitting, errors, touched }) => (
-          <Form className={classes.form}>
+          <Form sx={sxClasses.form}>
             <AutocompleteField
               name="field"
               label="Parcela"
@@ -136,5 +135,5 @@ export default function HistoricAdd() {
         )}
       </Formik>
     </Paper>
-  )
+  );
 }

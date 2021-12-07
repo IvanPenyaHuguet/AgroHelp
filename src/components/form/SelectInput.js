@@ -1,13 +1,11 @@
 import { Field } from 'formik'
-import MenuItem from '@material-ui/core/MenuItem'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
-import { Select } from 'formik-material-ui'
+import { Select } from 'formik-mui';
 
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     margin: '20px',
     width: '200px',
@@ -17,7 +15,7 @@ const useStyles = makeStyles({
   label: {
     transform: 'translate(14px, 20px) scale(1)',
   },
-})
+};
 
 const menuItems = items => {
   return items.map((item, index) => {
@@ -30,10 +28,10 @@ const menuItems = items => {
 }
 
 export default function SelectInput({ label, name, items, ...props }) {
-  const classes = useStyles()
+
 
   return (
-    <FormControl className={classes.root}>
+    <FormControl variant="standard" sx={sxClasses.root}>
       <InputLabel htmlFor={`id-${name}`} variant="outlined">
         {label}
       </InputLabel>
@@ -49,5 +47,5 @@ export default function SelectInput({ label, name, items, ...props }) {
         {menuItems(items)}
       </Field>
     </FormControl>
-  )
+  );
 }

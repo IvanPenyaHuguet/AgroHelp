@@ -8,18 +8,16 @@ import { Paper, TextField, Button, Form } from '../../../Exports'
 
 import { AlertContext } from '../../../../context/AlertContext'
 
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     height: '100%',
   },
-  form: {
+  formroot: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
-})
+};
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,12 +27,12 @@ const SignupSchema = Yup.object().shape({
 })
 
 export default function TreeAdd() {
-  const classes = useStyles()
+
   const collection = useRxCollection('trees')
   const { setAlert } = useContext(AlertContext)
 
   return (
-    <Paper className={classes.root}>
+    <Paper sx={sxClasses.root}>
       <Formik
         initialValues={{
           name: '',
@@ -64,7 +62,7 @@ export default function TreeAdd() {
         }}
       >
         {({ isSubmitting }) => (
-          <Form className={classes.form}>
+          <Form sx={sxClasses.form}>
             <TextField name="name" label="Nombre Com." />
             <TextField name="variety" label="Variedad" />
 
@@ -75,5 +73,5 @@ export default function TreeAdd() {
         )}
       </Formik>
     </Paper>
-  )
+  );
 }

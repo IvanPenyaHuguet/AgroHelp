@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import * as dayjs from 'dayjs'
-import { DataGrid, GridToolbar } from '@material-ui/data-grid'
-import TableContainer from '../components/TableContainer'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import CustomLoadingOverlay from '../components/LoadingOverlay'
 import CustomNoRowsOverlay from '../components/NoRowsOverlay'
 import { Paper } from '../../Exports'
-import { makeStyles } from '@material-ui/core/styles'
 
 import * as Database from '../../../services/database/Database'
+
+const useStyles = {
+  root: {
+    display: 'flex',
+    height: 'calc(100% - 60px)',
+    width: '100%',
+  },
+}
 
 const columns = [
   {
@@ -106,18 +112,10 @@ const columns = [
   },
 ]
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    height: 'calc(100% - 60px)',
-    width: '100%',
-  },
-})
-
 const TableWithData = ({ rowSelected, setRowSelected }) => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
-  const classes = useStyles()
+
 
   useEffect(async () => {
     setLoading(true)
@@ -136,7 +134,7 @@ const TableWithData = ({ rowSelected, setRowSelected }) => {
   }
 
   return (
-    <Paper className={classes.root}>
+    <Paper sx={useStyles.root}>
       <DataGrid
         components={{
           Toolbar: GridToolbar,
@@ -153,6 +151,6 @@ const TableWithData = ({ rowSelected, setRowSelected }) => {
         disableSelectionOnClick
       />
     </Paper>
-  )
+  );
 }
 export default React.memo(TableWithData)

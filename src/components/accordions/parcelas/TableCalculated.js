@@ -1,25 +1,24 @@
 import { useEffect, useState } from 'react'
 import { Container } from '../../Exports'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableFooter from '@material-ui/core/TableFooter'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import { makeStyles } from '@material-ui/core/styles'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableFooter from '@mui/material/TableFooter'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
 
-const useStyles = makeStyles({
+const sxClasses = {
   root: {
     minWidth: 700,
   },
   table: {
     minWidth: 700,
   },
-})
+};
 
 export default function TableCalculated({ values }) {
-  const classes = useStyles()
+
   const [totalData, setTotalData] = useState({})
 
   useEffect(() => {
@@ -41,9 +40,9 @@ export default function TableCalculated({ values }) {
   }, [values])
 
   return (
-    <TableContainer component={Container} className={classes.table}>
+    <TableContainer component={Container} sx={sxClasses.table}>
       {values.fields.length > 0 && (
-        <Table className={classes.table}>
+        <Table sx={sxClasses.table}>
           <TableHead>
             <TableRow>
               <TableCell align="center">Parcela</TableCell>
@@ -86,5 +85,5 @@ export default function TableCalculated({ values }) {
         </Table>
       )}
     </TableContainer>
-  )
+  );
 }

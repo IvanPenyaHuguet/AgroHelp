@@ -1,6 +1,6 @@
-import { GridOverlay } from '@material-ui/data-grid'
-import { createMuiTheme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/styles'
+import { GridOverlay } from '@mui/x-data-grid'
+import { createMuiTheme } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 
 const defaultTheme = createMuiTheme()
 const useStyles = makeStyles(
