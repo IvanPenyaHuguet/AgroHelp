@@ -1,6 +1,7 @@
 import { RxDocument } from 'rxdb'
 
 export type TreeType = {
+  id: string;
   name: string
   variety?: string
   createdAt: number

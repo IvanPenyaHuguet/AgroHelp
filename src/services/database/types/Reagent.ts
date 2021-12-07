@@ -1,6 +1,7 @@
 import { RxDocument } from 'rxdb'
 
 export type ReagentType = {
+  id: string;
   name: string
   product: string
   quantityTotal: number

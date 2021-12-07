@@ -77,7 +77,7 @@ export default function TableWithData() {
         rows={data}
         loading={loading}
         rowsPerPageOptions={[10, 25, 50, 100]}
-        getRowId={row => row._id}
+        getRowId={row => row.id}
         checkboxSelection
         selectionModel={selectionModel}
         onSelectionModelChange={handleSelection}

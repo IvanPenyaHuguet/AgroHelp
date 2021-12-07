@@ -1,14 +1,20 @@
 import { RxJsonSchema } from 'rxdb'
+import { v4 as uuidv4 } from 'uuid'
 import { ReagentType, ReagentMethods } from '../types/Reagent'
 import { ReagentCollectionMethods } from '../collections/ReagentCollection'
 
 export const reagentSchema: RxJsonSchema<ReagentType> = {
   title: 'reagent',
   version: 0,
+  primaryKey: 'id',
   description: 'Describes a reagent on property',
   type: 'object',
   keyCompression: false,
   properties: {
+    id: {
+      type: 'string',
+      default: uuidv4()
+    },
     name: {
       type: 'string',
     },

@@ -1,6 +1,7 @@
 import { RxDocument } from 'rxdb'
 
 export type FieldType = {
+  id: string;
   name: string
   refCast: string
   province: number

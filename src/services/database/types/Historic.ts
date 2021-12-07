@@ -1,6 +1,7 @@
 import { RxDocument } from 'rxdb'
 
 export type HistoricType = {
+  id: string;
   nameField: string
   refCastField: string
   nameReagent: string

@@ -16,7 +16,7 @@ export default function Table({ columns, rows, loading, ...props }) {
         rows={rows}
         loading={loading}
         rowsPerPageOptions={[10, 25, 50, 100]}
-        getRowId={row => row._id}
+        getRowId={row => row.id}
       />
     </TableContainer>
   )

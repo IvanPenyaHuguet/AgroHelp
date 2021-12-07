@@ -1,4 +1,8 @@
 import { createRxDatabase, addRxPlugin } from 'rxdb'
+import {
+  addPouchPlugin,
+  getRxStoragePouch
+} from 'rxdb/plugins/pouchdb';
 
 import { fieldSchema } from './schemas/FieldSchema'
 import { treeSchema } from './schemas/TreeSchema'
@@ -18,7 +22,7 @@ addRxPlugin(RxDBUpdatePlugin)
 addRxPlugin(RxDBQueryBuilderPlugin)
 addRxPlugin(RxDBMigrationPlugin)
 addRxPlugin(RxDBAttachmentsPlugin)
-addRxPlugin(require('pouchdb-adapter-idb'))
+addPouchPlugin(require('pouchdb-adapter-idb'))
 
 let _getDatabase: any // cached
 
@@ -31,7 +35,7 @@ async function createDatabase() {
   console.log('DatabaseService: Creating database..')
   const db = await createRxDatabase({
     name: 'agrodb',
-    adapter: 'idb',
+    storage: getRxStoragePouch('idb'),
     multiInstance: false, // <- multiInstance (optional, default: true) (leveldown false)
     eventReduce: true, // <- eventReduce (optional, default: true)
   })

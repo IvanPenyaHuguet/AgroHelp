@@ -147,7 +147,7 @@ const TableWithData = ({ rowSelected, setRowSelected }) => {
         rows={data}
         loading={loading}
         rowsPerPageOptions={[10, 25, 50, 100]}
-        getRowId={row => row._id}
+        getRowId={row => row.id}
         onRowSelected={handleRowSelected}
         checkboxSelection
         disableSelectionOnClick

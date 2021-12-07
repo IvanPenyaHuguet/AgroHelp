@@ -1,14 +1,20 @@
 import { RxJsonSchema } from 'rxdb'
+import { v4 as uuidv4 } from 'uuid'
 import { FieldType, FieldMethods } from '../types/Field'
 import { FieldCollectionMethods } from '../collections/FieldCollection'
 
 export const fieldSchema: RxJsonSchema<FieldType> = {
   title: 'field',
   version: 0,
+  primaryKey: 'id',
   description: 'describes a field on property',
   type: 'object',
   keyCompression: false,
   properties: {
+    id: {
+      type: 'string',
+      default: uuidv4()
+    },
     refCast: {
       type: 'string',
     },
@@ -67,6 +73,7 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
     },
   },
   required: ['refCast', 'name', 'area', 'plantedArea', 'tree'],
+  indexes: ['refCast']
 }
 
 export const fieldMethods: FieldMethods = {}

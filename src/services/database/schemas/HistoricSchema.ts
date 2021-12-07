@@ -1,14 +1,20 @@
 import { RxJsonSchema } from 'rxdb'
+import { v4 as uuidv4 } from 'uuid'
 import { HistoricType, HistoricMethods } from '../types/Historic'
 import { HistoricCollectionMethods } from '../collections/HistoricCollection'
 
 export const historicSchema: RxJsonSchema<HistoricType> = {
   title: 'historic',
+  primaryKey: 'id',
   version: 0,
   description: 'describes a historic',
   type: 'object',
   keyCompression: false,
   properties: {
+    id: {
+      type: 'string',
+      default: uuidv4()
+    },
     nameField: {
       type: 'string',
     },
