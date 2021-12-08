@@ -2,6 +2,7 @@ import { useContext, useState } from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import dayjs from 'dayjs'
+import { v4 as uuidv4 } from 'uuid'
 import { useRxCollection } from 'rxdb-hooks'
 import Typography from '@mui/material/Typography'
 import {
@@ -152,6 +153,7 @@ export default function TreeAdd() {
           await collection
             .insert({
               ...values,
+              id: uuidv4(),
               createdAt: dayjs().valueOf(),
               updatedAt: dayjs().valueOf(),
               quantityUsed: 0,

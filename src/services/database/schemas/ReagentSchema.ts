@@ -12,8 +12,7 @@ export const reagentSchema: RxJsonSchema<ReagentType> = {
   keyCompression: false,
   properties: {
     id: {
-      type: 'string',
-      default: uuidv4()
+      type: 'string'
     },
     name: {
       type: 'string',

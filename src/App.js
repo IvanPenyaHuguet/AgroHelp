@@ -18,11 +18,13 @@ export function App() {
       const _db = await getDatabase()
       setDb(_db)
     }
-    initDB()
+    if (!db) {
+      initDB()
+    }    
   }, [])
 
   return (
-    <Provider db={db}>
+    <Provider db={db} idAttribute="id">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <StyledEngineProvider injectFirst>
           <ThemeProvider>

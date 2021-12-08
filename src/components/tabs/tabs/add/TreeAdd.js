@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { v4 as uuidv4 } from 'uuid'
 import dayjs from 'dayjs'
 import { useRxCollection } from 'rxdb-hooks'
 
@@ -43,6 +44,7 @@ export default function TreeAdd() {
           await collection
             .insert({
               ...values,
+              id: uuidv4(),
               createdAt: dayjs().valueOf(),
               updatedAt: dayjs().valueOf(),
             })

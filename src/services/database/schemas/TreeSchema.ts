@@ -12,8 +12,7 @@ export const treeSchema: RxJsonSchema<TreeType> = {
   keyCompression: false,
   properties: {
     id: {
-      type: 'string',
-      default: uuidv4()
+      type: 'string'
     },
     name: {
       type: 'string',

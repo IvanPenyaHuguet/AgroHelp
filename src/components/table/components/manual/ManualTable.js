@@ -96,7 +96,7 @@ export default function EnhancedTable({
 }) {
 
   const [order, setOrder] = React.useState('asc')
-  const [orderBy, setOrderBy] = React.useState('_id')
+  const [orderBy, setOrderBy] = React.useState('id')
 
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -110,7 +110,7 @@ export default function EnhancedTable({
 
   const handleSelectAllClick = event => {
     if (event.target.checked) {
-      const newSelecteds = rows.map(n => n._id)
+      const newSelecteds = rows.map(n => n.id)
       setSelected(newSelecteds)
       return
     }
@@ -188,11 +188,11 @@ export default function EnhancedTable({
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((row, index) => {
-                        const isItemSelected = isSelected(row._id)
+                        const isItemSelected = isSelected(row.id)
                         const labelId = `enhanced-table-checkbox-${index}`
 
                         return (
-                          <React.Fragment key={row._id}>
+                          <React.Fragment key={row.id}>
                             <TableRow
                               hover
                               role="checkbox"
@@ -204,7 +204,7 @@ export default function EnhancedTable({
                                 <Checkbox
                                   checked={isItemSelected}
                                   inputProps={{ 'aria-labelledby': labelId }}
-                                  onClick={event => handleClick(event, row._id)}
+                                  onClick={event => handleClick(event, row.id)}
                                 />
                               </TableCell>
                               <TableCell>

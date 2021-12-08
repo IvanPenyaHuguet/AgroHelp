@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { v4 as uuidv4 } from 'uuid'
 import dayjs from 'dayjs'
 import { useRxCollection, useRxData } from 'rxdb-hooks'
 
@@ -89,7 +90,7 @@ export default function ParcelaAdd() {
             const tree = await collectionTree
               .findOne({
                 selector: {
-                  _id: values.tree,
+                  id: values.tree,
                 },
               })
               .exec()
@@ -100,8 +101,9 @@ export default function ParcelaAdd() {
               tree: {
                 name: tree.name,
                 variety: tree.variety,
-                id: tree._id,
+                id: tree.id,
               },
+              id: uuidv4(),
               createdAt: dayjs().valueOf(),
               updatedAt: dayjs().valueOf(),
             })

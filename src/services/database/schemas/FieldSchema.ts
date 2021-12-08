@@ -12,8 +12,7 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
   keyCompression: false,
   properties: {
     id: {
-      type: 'string',
-      default: uuidv4()
+      type: 'string'
     },
     refCast: {
       type: 'string',

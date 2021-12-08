@@ -78,7 +78,7 @@ export async function GetReagentData(regNum, treeId) {
     const objects = await db.trees
       .findOne({
         selector: {
-          _id: treeId,
+          id: treeId,
         },
       })
       .exec()

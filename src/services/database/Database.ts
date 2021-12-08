@@ -1,4 +1,4 @@
-import { createRxDatabase, addRxPlugin } from 'rxdb'
+import { createRxDatabase, addRxPlugin, removeRxDatabase } from 'rxdb'
 import {
   addPouchPlugin,
   getRxStoragePouch

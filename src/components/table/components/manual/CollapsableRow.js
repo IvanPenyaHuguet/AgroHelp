@@ -66,7 +66,7 @@ export default function CollapsableRow(props) {
   const { setAlert } = useContext(AlertContext)
 
   const { result, isFetching } = useRxData('trees', collection =>
-    collection.find({ selector: { _id: { $in: id.trees.map(r => r.tree) } } })
+    collection.find({ selector: { id: { $in: id.trees.map(r => r.tree) } } })
   )
 
   return (
@@ -137,11 +137,11 @@ export default function CollapsableRow(props) {
                         {id.trees.map((row, ind) => (
                           <TableRow key={ind}>
                             <TableCell>
-                              {result.find(tree => tree._id == row.tree).name}
+                              {result.find(tree => tree.id == row.tree).name}
                             </TableCell>
                             <TableCell>
                               {
-                                result.find(tree => tree._id == row.tree)
+                                result.find(tree => tree.id == row.tree)
                                   .variety
                               }
                             </TableCell>

@@ -118,7 +118,7 @@ export default function TableWithData() {
     Database.getDatabase()
       .then(res => {
         res.reagents
-          .find({ selector: { _id: { $in: selected.map(r => r._id) } } })
+          .find({ selector: { id: { $in: selected.map(r => r.id) } } })
           .remove()
       })
       .then(res => {

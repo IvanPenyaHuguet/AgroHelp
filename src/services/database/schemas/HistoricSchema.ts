@@ -12,8 +12,7 @@ export const historicSchema: RxJsonSchema<HistoricType> = {
   keyCompression: false,
   properties: {
     id: {
-      type: 'string',
-      default: uuidv4()
+      type: 'string'
     },
     nameField: {
       type: 'string',

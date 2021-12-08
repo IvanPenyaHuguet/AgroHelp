@@ -20,7 +20,7 @@ const sxClasses = {
 const menuItems = items => {
   return items.map((item, index) => {
     return (
-      <MenuItem key={index} value={item._id ? item._id : item.value}>
+      <MenuItem key={index} value={item.id ? item.id : item.value}>
         {item.name} {item.variety ? item.variety : ''}
       </MenuItem>
     )

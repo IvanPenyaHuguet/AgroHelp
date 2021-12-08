@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react'
 import { Formik, useFormikContext } from 'formik'
 import * as Yup from 'yup'
 import dayjs from 'dayjs'
+import { v4 as uuidv4 } from 'uuid'
 import { useRxCollection, useRxData } from 'rxdb-hooks'
 import ChangeFieldDose from '../../../form/ChangeFieldDose'
 
@@ -68,7 +69,7 @@ export default function HistoricAdd() {
             const tree = await collectionTree
               .findOne({
                 selector: {
-                  _id: values.field.tree,
+                  id: values.field.tree,
                 },
               })
               .exec()
@@ -87,6 +88,7 @@ export default function HistoricAdd() {
               quantityUsedReagent: values.quantityUsedReagent,
               literWater: values.literWater,
               date: dayjs(values.date, 'DD/MM/YYYY').valueOf(),
+              id: uuidv4(),
               createdAt: dayjs().valueOf(),
               updatedAt: dayjs().valueOf(),
             })
