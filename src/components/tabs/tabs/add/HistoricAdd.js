@@ -18,6 +18,7 @@ import { AlertContext } from '../../../../context/AlertContext'
 const sxClasses = {
   root: {
     height: '100%',
+    padding: '24px'
   },
   form: {
     width: '90%',

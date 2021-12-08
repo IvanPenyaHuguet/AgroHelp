@@ -16,8 +16,19 @@ const sxClasses = {
     backgroundColor: 'white',
     height: '100%',
     minHeight: '100vh',
-    width: '100%',
-    maxWidth: '100%',
+    width: {
+      xs:' 100%',
+      lg: '100%'
+    },
+    maxWidth: {
+      xs:' 100%',
+      lg: '100%'
+    },
+    padding: {
+      xs: 0,
+      sm: 0,
+      md: 0
+    },
     overflow: 'hidden',
   },
   bar: {
@@ -26,6 +37,10 @@ const sxClasses = {
   zeroPadding: {
     padding: 0,
   },
+  tab: {
+    fontWeight: '900',
+    color: 'white'
+  }
 };
 
 function a11yProps(index) {
@@ -47,16 +62,17 @@ export default function NavTabs() {
       <AppBar position="static" sx={sxClasses.bar}>
         <Toolbar>
           <Tabs
-            variant="fullWidth"
             value={value}
             onChange={handleChange}
-            aria-label="nav tabs example"
+            textColor="secondary"
+            indicatorColor="secondary"
+            aria-label="nav tabs"            
           >
-            <Tab label="Parcelas" {...a11yProps(0)} />
-            <Tab label="Reactivos" {...a11yProps(1)} />
-            <Tab label="Histórico" {...a11yProps(2)} />
-            <Tab label="Cultivo" {...a11yProps(3)} />
-            <Tab label="Añadir" {...a11yProps(4)} />
+            <Tab label="Parcelas" {...a11yProps(0)} sx={sxClasses.tab} />
+            <Tab label="Reactivos" {...a11yProps(1)} sx={sxClasses.tab}/>
+            <Tab label="Histórico" {...a11yProps(2)} sx={sxClasses.tab}/>
+            <Tab label="Cultivo" {...a11yProps(3)} sx={sxClasses.tab}/>
+            <Tab label="Añadir" {...a11yProps(4)} sx={sxClasses.tab}/>
           </Tabs>
         </Toolbar>
       </AppBar>

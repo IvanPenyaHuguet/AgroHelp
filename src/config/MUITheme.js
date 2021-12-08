@@ -10,7 +10,7 @@ const theme = createTheme(
         main: '#2196f3',
       },
       secondary: {
-        main: '#00e676',
+        main: '#ffa726',
       },
     },
     overrides: {},

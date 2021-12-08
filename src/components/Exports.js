@@ -10,6 +10,7 @@ import ReagentAdd from './tabs/tabs/add/ReagentAdd'
 import HistoricAdd from './tabs/tabs/add/HistoricAdd'
 import TabPanel from './tabs/Tabpanel'
 import Container from './layouts/Container'
+import Box from './layouts/Box'
 import Accordion from './accordions/Accordion'
 import CalculateNecesary from './accordions/parcelas/CalculateNecesary'
 import Popover from './layouts/pops/PopOver'
@@ -33,6 +34,7 @@ export {
   AddTabs,
   TabPanel,
   Container,
+  Box,
   ParcelaAdd,
   Paper,
   TreeAdd,

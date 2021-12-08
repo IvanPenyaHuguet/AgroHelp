@@ -22,19 +22,30 @@ const sxClasses = {
     backgroundColor: 'white',
     height: '100%',
     minHeight: '100%',
-    width: '100%',
-    maxWidth: '100%',
-    overflow: 'hidden',
-    padding: 0,
+    width: {
+      xs:' 100%',
+      lg: '100%'
+    },
+    maxWidth: {
+      xs:' 100%',
+      lg: '100%'
+    },
+    padding: {
+      xs: 0,
+      sm: 0,
+      md: 0,
+      lg: 0
+    },
+    overflow: 'hidden'    
   },
   bar: {
     width: '100%',
     padding: 0,
-  },
-  screen: {
-    height: 'calc(100vh - 128px)',
-    overflow: 'auto',
-  },
+  },  
+  tab: {
+    fontWeight: '700',
+    color: 'white'
+  }
 };
 
 
@@ -60,25 +71,27 @@ export default function AddTabs() {
             variant="fullWidth"
             value={value}
             onChange={handleChange}
+            textColor="secondary"
+            indicatorColor="secondary"
             aria-label="nav tabs example"
           >
-            <Tab label="Histórico" {...a11yProps(0)} />
-            <Tab label="Parcelas" {...a11yProps(1)} />
-            <Tab label="Cultivo" {...a11yProps(2)} />
-            <Tab label="Reactivos" {...a11yProps(3)} />
+            <Tab label="Histórico" {...a11yProps(0)} sx={sxClasses.tab}/>
+            <Tab label="Parcelas" {...a11yProps(1)} sx={sxClasses.tab}/>
+            <Tab label="Cultivo" {...a11yProps(2)} sx={sxClasses.tab}/>
+            <Tab label="Reactivos" {...a11yProps(3)} sx={sxClasses.tab}/>
           </Tabs>
         </Toolbar>
       </AppBar>
-      <TabPanel value={value} index={0} sx={sxClasses.screen}>
+      <TabPanel value={value} index={0} height={'128px'}>
         <HistoricAdd />
       </TabPanel>
-      <TabPanel value={value} index={1} sx={sxClasses.screen}>
+      <TabPanel value={value} index={1} height={'128px'}>
         <ParcelaAdd />
       </TabPanel>
-      <TabPanel value={value} index={2} sx={sxClasses.screen}>
+      <TabPanel value={value} index={2} height={'128px'}>
         <TreeAdd />
       </TabPanel>
-      <TabPanel value={value} index={3} sx={sxClasses.screen}>
+      <TabPanel value={value} index={3} height={'128px'}>
         <ReagentAdd />
       </TabPanel>
     </Container>

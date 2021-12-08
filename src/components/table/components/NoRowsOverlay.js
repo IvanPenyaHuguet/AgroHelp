@@ -1,8 +1,8 @@
 import { GridOverlay } from '@mui/x-data-grid'
-import { createMuiTheme } from '@mui/material/styles'
+import { createTheme } from '@mui/material/styles'
 import { makeStyles } from '@mui/styles'
 
-const defaultTheme = createMuiTheme()
+const defaultTheme = createTheme()
 const useStyles = makeStyles(
   theme => ({
     root: {
