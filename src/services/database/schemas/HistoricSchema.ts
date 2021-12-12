@@ -68,6 +68,10 @@ export const historicSchema: RxJsonSchema<HistoricType> = {
       type: 'number',
       minimum: 0,
     },
+    deletedAt: {
+      type: 'number',
+      minimum: 0,
+    },
   },
   required: [
     'nameField',

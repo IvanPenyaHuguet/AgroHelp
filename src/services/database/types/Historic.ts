@@ -17,6 +17,7 @@ export type HistoricType = {
   unitReagent: string
   createdAt: number
   updatedAt: number
+  deletedAt: number
 }
 
 export type HistoricMethods = {}

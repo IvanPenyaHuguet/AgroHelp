@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useContext } from 'react'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import TableContainer from '../components/TableContainer'
 import CustomLoadingOverlay from '../components/LoadingOverlay'
 import CustomNoRowsOverlay from '../components/NoRowsOverlay'
 import * as dayjs from 'dayjs'
+import { useRxCollection } from 'rxdb-hooks'
 
 import * as Database from '../../../services/database/Database'
 import { AddCultivoSchema } from '../../../services/validators/AddCultivoSchema'
+import { AlertContext } from '../../../context/AlertContext';
+import DeleteActionCell from '../components/DeleteActionCell';
 
 const columns = [
   {
@@ -17,10 +20,10 @@ const columns = [
     flex: 1,
     editable: true,
     preProcessEditCellProps: async (params) => {
-      const hasError = await AddCultivoSchema.isValid({
+      const hasError = await !AddCultivoSchema.isValid({
           name: params.props.value
-      });        
-      return { ...params.props, error: hasError };
+      });       
+      return { ...params.props, error: hasError || undefined };
     },
   },
   {
@@ -55,24 +58,62 @@ const columns = [
     },
     valueParser: value => dayjs(value, 'DD/MM/YYYY H:mm', 'es').valueOf(),
   },
+  {
+    field: 'actions',
+    type: 'actions',
+    headerName: 'Actions',
+    getActions: ({ id }) => {
+      return [
+        <DeleteActionCell id={id} collection="trees"/>
+      ]
+    }
+  },
 ]
 
 export default function TableWithData() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [selectionModel, setSelectionModel] = useState([])
+  const collection = useRxCollection('trees')
+  const { setAlert } = useContext(AlertContext)
 
-  useEffect(async () => {
-    setLoading(true)
-    const db = await Database.getDatabase()
-    const objects = await db.trees.find().exec()
-    setLoading(false)
-    setData(objects)
+  useEffect(() => {
+    async function fetch() {
+      setLoading(true)
+      const db = await Database.getDatabase()
+      const objects = await db.trees.find().exec()
+      setLoading(false)
+      setData(objects)
+    }
+    fetch();    
   }, [])
 
   const handleSelection = selection => {
     setSelectionModel(selection.selectionModel)
   }
+
+  const handleCellEditCommit = useCallback (async params => {    
+    try {
+      const document = await collection.findOne({
+        selector: {
+          id: params.id
+        }
+      }).exec();      
+      const toUpdate = {
+        [params.field]: params.value,
+        updatedAt: dayjs().valueOf()
+      }
+      await document.update({ $set: toUpdate });      
+
+    } catch (err) { 
+      console.error(err)
+      setAlert({
+        type: 'error',
+        message:
+          'Error no controlado, envia un email a ivanpenyahuguet@gmail.com',
+      })
+    }  
+  },[collection, setAlert])
 
   return (
     <TableContainer>
@@ -87,9 +128,10 @@ export default function TableWithData() {
         loading={loading}
         rowsPerPageOptions={[10, 25, 50, 100]}
         getRowId={row => row.id}
-        checkboxSelection
-        selectionModel={selectionModel}
-        onSelectionModelChange={handleSelection}
+        // checkboxSelection
+        // selectionModel={selectionModel}
+        // onSelectionModelChange={handleSelection}
+        onCellEditCommit={handleCellEditCommit}
       />
     </TableContainer>
   )

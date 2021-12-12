@@ -6,6 +6,7 @@ export type TreeType = {
   variety?: string
   createdAt: number
   updatedAt: number
+  deletedAt: number
 }
 export type TreeMethods = {}
 

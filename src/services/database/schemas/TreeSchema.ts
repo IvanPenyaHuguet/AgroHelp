@@ -28,6 +28,10 @@ export const treeSchema: RxJsonSchema<TreeType> = {
       type: 'number',
       minimum: 0,
     },
+    deletedAt: {
+      type: 'number',
+      minimum: 0,
+    },
   },
   required: ['name'],
 }

@@ -50,6 +50,10 @@ export const fieldSchema: RxJsonSchema<FieldType> = {
       type: 'number',
       minimum: 0,
     },
+    deletedAt: {
+      type: 'number',
+      minimum: 0,
+    },
     province: {
       type: 'number',
       minimum: 0,

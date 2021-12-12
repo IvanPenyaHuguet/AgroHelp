@@ -12,6 +12,7 @@ export type ReagentType = {
   observations: string
   createdAt: number
   updatedAt: number
+  deletedAt: number
   nReg: number
   trees?: {
     tree?: string

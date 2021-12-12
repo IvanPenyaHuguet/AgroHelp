@@ -53,6 +53,10 @@ export const reagentSchema: RxJsonSchema<ReagentType> = {
       type: 'number',
       minimum: 0,
     },
+    deletedAt: {
+      type: 'number',
+      minimum: 0,
+    },
     products: {
       type: 'array',
       items: {

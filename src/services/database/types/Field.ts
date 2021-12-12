@@ -12,6 +12,7 @@ export type FieldType = {
   plantedArea: number
   createdAt: number
   updatedAt: number
+  deletedAt: number
   tree: {
     name: string
     variety: string
