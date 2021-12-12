@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import AdapterDayjs from '@mui/lab/AdapterDayjs';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -24,16 +24,18 @@ export function App() {
   }, [])
 
   return (
-    <Provider db={db} idAttribute="id">
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider>
-            <AlertContext>
-              <Router />
-            </AlertContext>
-          </ThemeProvider>
-        </StyledEngineProvider>
-      </LocalizationProvider>
-    </Provider>
+    <React.StrictMode>
+      <Provider db={db} idAttribute="id">
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider>
+              <AlertContext>
+                <Router />
+              </AlertContext>
+            </ThemeProvider>
+          </StyledEngineProvider>
+        </LocalizationProvider>
+      </Provider>
+    </React.StrictMode>
   )
 }
