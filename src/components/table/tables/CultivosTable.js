@@ -6,6 +6,7 @@ import CustomNoRowsOverlay from '../components/NoRowsOverlay'
 import * as dayjs from 'dayjs'
 
 import * as Database from '../../../services/database/Database'
+import { AddCultivoSchema } from '../../../services/validators/AddCultivoSchema'
 
 const columns = [
   {
@@ -14,6 +15,13 @@ const columns = [
     type: 'string',
     description: 'Nombre del cultivo',
     flex: 1,
+    editable: true,
+    preProcessEditCellProps: async (params) => {
+      const hasError = await AddCultivoSchema.isValid({
+          name: params.props.value
+      });        
+      return { ...params.props, error: hasError };
+    },
   },
   {
     field: 'variety',
@@ -21,6 +29,7 @@ const columns = [
     type: 'string',
     description: 'Nombre de la Variedad',
     flex: 1,
+    editable: true    
   },
   {
     field: 'createdAt',

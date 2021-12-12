@@ -9,7 +9,7 @@ import validateRefCat from '../../../../services/validators/ValidateRefCat'
 import {
   Paper,
   TextField,
-  Button,
+  NewButton,
   Form,
   SelectInput,
   RefCatInput,
@@ -147,9 +147,7 @@ export default function ParcelaAdd() {
               type="number"
             />
 
-            <Button disabled={isSubmitting} type="submit">
-              Nuevo
-            </Button>
+            <NewButton isSubmitting={isSubmitting}/>
           </Form>
         )}
       </Formik>

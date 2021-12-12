@@ -35,7 +35,7 @@ export default function EnhancedTableHead(props) {
           <TableCell
             key={headCell.field}
             align="right"
-            padding="default"
+            padding="normal"
             sortDirection={orderBy === headCell.field ? order : false}
           >
             <TableSortLabel
@@ -45,7 +45,7 @@ export default function EnhancedTableHead(props) {
             >
               {headCell.headerName}
               {orderBy === headCell.field ? (
-                <span sx={sxClasses.visuallyHidden}>
+                <span sx={classes.visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
               ) : null}

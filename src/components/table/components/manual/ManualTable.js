@@ -20,12 +20,38 @@ import CollapsableRow from './CollapsableRow'
 
 const sxClasses = {
   root: {
-    width: '100%',
+    width: {
+      xs:' 100%',
+      lg: '100%'
+    },
+    maxWidth: {
+      xs:' 100%',
+      lg: '100%'
+    },
+    padding: {
+      xs: 0,
+      sm: 0,
+      md: 0,
+      lg: 0
+    },
     display: 'flex',
     height: '100%',
   },
   paper: (theme) => ({
-    width: '100%',
+    width: {
+      xs:' 100%',
+      lg: '100%'
+    },
+    maxWidth: {
+      xs:' 100%',
+      lg: '100%'
+    },
+    padding: {
+      xs: 0,
+      sm: 0,
+      md: 0,
+      lg: 0
+    },
     marginBottom: theme.spacing(2),
     height: '100%',
   }),

@@ -9,7 +9,7 @@ import ChangeFieldDose from '../../../form/ChangeFieldDose'
 import {
   Paper,
   TextField,
-  Button,
+  NewButton,
   Form,
   DatePicker,
   AutocompleteField,
@@ -29,7 +29,7 @@ const sxClasses = {
     justifyContent: 'space-around',
     flexWrap: 'wrap',
     margin: '0 auto',
-  },
+  }
 };
 
 const SignupSchema = Yup.object().shape({
@@ -131,9 +131,7 @@ export default function HistoricAdd() {
             />
             <ChangeFieldDose />
             <DatePicker name="date" label="Fecha" />
-            <Button disabled={isSubmitting} type="submit">
-              Nuevo
-            </Button>
+            <NewButton isSubmitting={isSubmitting} />
           </Form>
         )}
       </Formik>

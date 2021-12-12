@@ -1,11 +1,12 @@
 import { useContext } from 'react'
 import { Formik } from 'formik'
-import * as Yup from 'yup'
+
 import { v4 as uuidv4 } from 'uuid'
 import dayjs from 'dayjs'
 import { useRxCollection } from 'rxdb-hooks'
+import { AddCultivoSchema } from '../../../../services/validators/AddCultivoSchema'
 
-import { Paper, TextField, Button, Form } from '../../../Exports'
+import { Paper, TextField, NewButton, Form } from '../../../Exports'
 
 import { AlertContext } from '../../../../context/AlertContext'
 
@@ -20,13 +21,6 @@ const sxClasses = {
   },
 };
 
-const SignupSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Muy corto!')
-    .max(50, 'Muy largo!')
-    .required('Necesario'),
-})
-
 export default function TreeAdd() {
 
   const collection = useRxCollection('trees')
@@ -39,7 +33,7 @@ export default function TreeAdd() {
           name: '',
           variety: '',
         }}
-        validationSchema={SignupSchema}
+        validationSchema={AddCultivoSchema}
         onSubmit={async (values, actions) => {
           await collection
             .insert({
@@ -68,9 +62,7 @@ export default function TreeAdd() {
             <TextField name="name" label="Nombre Com." />
             <TextField name="variety" label="Variedad" />
 
-            <Button disabled={isSubmitting} type="submit">
-              Nuevo
-            </Button>
+            <NewButton isSubmitting={isSubmitting} />
           </Form>
         )}
       </Formik>

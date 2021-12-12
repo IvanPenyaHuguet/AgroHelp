@@ -27,6 +27,7 @@ import TextFieldWithSelect from './form/TextFieldWithSelect'
 import DatePicker from './form/DatePicker'
 import RefCatInput from './form/RefCatInput'
 import SelectFieldReagent from './form/SelectFieldReagent'
+import NewButton from './form/NewButton'
 
 export {
   AlertContext,
@@ -58,4 +59,5 @@ export {
   CalculateNecesary,
   CalculateUnits,
   NumberField,
+  NewButton
 }

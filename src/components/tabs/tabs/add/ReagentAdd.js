@@ -9,7 +9,7 @@ import {
   Paper,
   TextField,
   TextFieldWithSelect,
-  Button,
+  NewButton,
   Form,
   FieldArrayTreeOnReagent,
   Popover,
@@ -208,9 +208,7 @@ export default function TreeAdd() {
               values={values.trees}
             />
 
-            <Button disabled={isSubmitting} type="submit">
-              Nuevo
-            </Button>
+            <NewButton isSubmitting={isSubmitting} />
           </Form>
         )}
       </Formik>

@@ -85,6 +85,7 @@ export default function FieldArrayInputs({
                     aria-label="Menos"
                     color="secondary"
                     size="large"
+                    disabled={values.length > 0}
                     onClick={() => remove(index)}
                   >
                     <RemoveCircleIcon fontSize="large" />

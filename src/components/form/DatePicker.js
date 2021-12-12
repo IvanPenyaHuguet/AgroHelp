@@ -1,11 +1,6 @@
 import { DatePicker } from 'formik-mui-lab';
 import { Field } from 'formik'
-
-const PREFIX = 'DatePicker';
-
-const classes = {
-  root: `${PREFIX}-root`
-};
+import { Box } from '../Exports';
 
 const sxClasses = {
   root: {
@@ -18,20 +13,23 @@ export default function ({
   name,
   format = 'DD/MM/YYYY',
   variant = 'outlined',
+  sxClass,
   ...props
 }) {
 
   return (
-    <Field
-      component={DatePicker}
-      label={label}
-      name={name}
-      inputFormat={format}
-      disableToolbar
-      variant="inline"
-      inputVariant={variant}
-      sx={sxClasses.root}
-      {...props}
-    />
+    <Box sx={[sxClasses.root, sxClass]}>
+      <Field
+        component={DatePicker}
+        label={label}
+        name={name}
+        inputFormat={format}
+        disableToolbar
+        variant="inline"
+        inputVariant={variant}      
+        {...props}
+      />
+    </Box>
+    
   )
 }

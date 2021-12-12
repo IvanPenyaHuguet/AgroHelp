@@ -1,7 +1,5 @@
 import { Field } from 'formik'
 import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
 
 import { Select } from 'formik-mui';
 
@@ -28,24 +26,20 @@ const menuItems = items => {
 }
 
 export default function SelectInput({ label, name, items, ...props }) {
-
-
-  return (
-    <FormControl variant="standard" sx={sxClasses.root}>
-      <InputLabel htmlFor={`id-${name}`} variant="outlined">
-        {label}
-      </InputLabel>
+  return (    
       <Field
+        formControl={{ sx: sxClasses.root }}
         component={Select}
         name={name}
         variant="outlined"
+        labelId={`label-${name}`}
+        label={label}
         inputProps={{
           id: `id-${name}`,
         }}
         {...props}
       >
         {menuItems(items)}
-      </Field>
-    </FormControl>
+      </Field>   
   );
 }
