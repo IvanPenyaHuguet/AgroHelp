@@ -28,6 +28,7 @@ import DatePicker from './form/DatePicker'
 import RefCatInput from './form/RefCatInput'
 import SelectFieldReagent from './form/SelectFieldReagent'
 import NewButton from './form/NewButton'
+import ConfirmModal from './layouts/modals/ConfirmModal'
 
 export {
   AlertContext,
@@ -59,5 +60,6 @@ export {
   CalculateNecesary,
   CalculateUnits,
   NumberField,
-  NewButton
+  NewButton,
+  ConfirmModal
 }
